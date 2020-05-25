@@ -11,39 +11,28 @@ class harvests extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['text'],
+      required: ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'harvested_product'],
 
       properties: {
-        text: { type: 'string' }
+        amount: 'number',
+        harvesting_worker: 'string',
+        clerk: 'string',
+        harvest_farm: 'string',
+        harvested_product: 'string',
       }
     };
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date().toISOString();
+    this.created_at = this.updated_at = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updated_at = new Date();
   }
 }
 
+// eslint-disable-next-line
 module.exports = function (app) {
-  const db = app.get('knex');
-
-  db.schema.hasTable('harvests').then(exists => {
-    if (!exists) {
-      db.schema.createTable('harvests', table => {
-        table.increments('id');
-        table.string('text');
-        table.timestamp('createdAt');
-        table.timestamp('updatedAt');
-      })
-        .then(() => console.log('Created harvests table')) // eslint-disable-line no-console
-        .catch(e => console.error('Error creating harvests table', e)); // eslint-disable-line no-console
-    }
-  })
-    .catch(e => console.error('Error creating harvests table', e)); // eslint-disable-line no-console
-
   return harvests;
 };
