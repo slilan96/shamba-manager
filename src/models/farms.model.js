@@ -28,22 +28,7 @@ class farms extends Model {
   }
 }
 
+// eslint-disable-next-line
 module.exports = function (app) {
-  const db = app.get('knex');
-
-  db.schema.hasTable('farms').then(exists => {
-    if (!exists) {
-      db.schema.createTable('farms', table => {
-        table.increments('id');
-        table.string('text');
-        table.timestamp('createdAt');
-        table.timestamp('updatedAt');
-      })
-        .then(() => console.log('Created farms table')) // eslint-disable-line no-console
-        .catch(e => console.error('Error creating farms table', e)); // eslint-disable-line no-console
-    }
-  })
-    .catch(e => console.error('Error creating farms table', e)); // eslint-disable-line no-console
-
   return farms;
 };

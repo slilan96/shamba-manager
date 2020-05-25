@@ -19,16 +19,18 @@ class users extends Model {
         first_name: 'string',
         last_name: 'string',
         role: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       },
     };
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date().toISOString();
+    this.created_at = this.updated_at = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updated_at = new Date();
   }
 }
 
