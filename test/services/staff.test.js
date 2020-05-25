@@ -1,13 +1,10 @@
 const assert = require('assert');
 const app = require('../../src/app');
 
-describe('\'users\' service', () => {
+describe('\'staff\' service', () => {
   it('registered the service', () => {
-    const service = app.service('users');
+    const service = app.service('staff');
 
     assert.ok(service, 'Registered the service');
-  });
-
-  it('should hash the password of a newly created users', () => {
   });
 });
