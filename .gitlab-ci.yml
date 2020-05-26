@@ -10,11 +10,11 @@ services:
   - mysql:latest
 
 variables:
-  - MYSQL_ROOT_PASSWORD: test
-  - MYSQL_DATABASE: test_farm_manager
-  - MYSQL_USER: test
-  - MYSQL_PASSWORD: test_farm_manager
-  - NODE_ENV: test
+  MYSQL_ROOT_PASSWORD: test
+  MYSQL_DATABASE: test_farm_manager
+  MYSQL_USER: test
+  MYSQL_PASSWORD: test_farm_manager
+  NODE_ENV: test
 
 cache:
   paths:
