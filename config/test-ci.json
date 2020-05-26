@@ -1,0 +1,12 @@
+{
+  "mysql": {
+   "client": "mysql2",
+   "connection": {
+     "host": "mysql",
+     "user": "test",
+     "password" : "test",
+     "database": "test_farm_manager"
+   },
+   "debug": true
+  }
+}

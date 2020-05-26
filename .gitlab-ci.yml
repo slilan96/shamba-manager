@@ -14,7 +14,7 @@ variables:
   MYSQL_DATABASE: test_farm_manager
   MYSQL_USER: test
   MYSQL_PASSWORD: test_farm_manager
-  NODE_ENV: test
+  NODE_ENV: test-ci
 
 cache:
   paths:

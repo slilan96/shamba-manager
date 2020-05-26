@@ -24,7 +24,8 @@
     "yarn": ">= 0.18.0"
   },
   "scripts": {
-    "test": "NODE_ENV=test yarn run:migrations && yarn mocha",
+    "test": "yarn run:migrations && yarn mocha",
+    "test:local": "NODE_ENV=test yarn test",
     "lint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
