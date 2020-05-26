@@ -13,7 +13,7 @@ variables:
   MYSQL_ROOT_PASSWORD: test
   MYSQL_DATABASE: test_farm_manager
   MYSQL_USER: test
-  MYSQL_PASSWORD: test_farm_manager
+  MYSQL_PASSWORD: test
   NODE_ENV: test-ci
 
 cache:
