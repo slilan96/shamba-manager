@@ -9,18 +9,32 @@ image: node:latest
 services:
   - mysql:latest
 
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+variables:
+  - MYSQL_ROOT_PASSWORD: test
+  - MYSQL_DATABASE: test_farm_manager
+  - MYSQL_USER: test
+  - MYSQL_PASSWORD: test_farm_manager
+  - NODE_ENV: test
+
 cache:
   paths:
     - node_modules/
 
-test_async:
-  script:
-    - npm install
-    - node ./specs/start.js ./specs/async.spec.js
+stages:
+  - build
+  - test
+  - deploy
 
-test_db:
+setup_project:
+  stage: build
   script:
-    - npm install
-    - node ./specs/start.js ./specs/db-postgres.spec.js
+    - yarn install
+
+test_lint:
+  stage: test
+  script:
+    - yarn lint
+
+test_integration:
+  script:
+    - yarn test
