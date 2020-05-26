@@ -19,8 +19,8 @@ class users extends Model {
         first_name: 'string',
         last_name: 'string',
         role: 'string',
-        createdAt: 'string',
-        updatedAt: 'string',
+        created_at: 'string',
+        updated_at: 'string',
       },
     };
   }

@@ -11,39 +11,28 @@ class products extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['text'],
+      required: ['name', 'units'],
 
       properties: {
-        text: { type: 'string' }
+        id: 'integer',
+        name: 'string',
+        units: 'string',
+        created_at: 'string',
+        updated_at: 'string',
       }
     };
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date().toISOString();
+    this.created_at = this.updated_at = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updated_at = new Date();
   }
 }
 
+// eslint-disable-next-line
 module.exports = function (app) {
-  const db = app.get('knex');
-
-  db.schema.hasTable('products').then(exists => {
-    if (!exists) {
-      db.schema.createTable('products', table => {
-        table.increments('id');
-        table.string('text');
-        table.timestamp('createdAt');
-        table.timestamp('updatedAt');
-      })
-        .then(() => console.log('Created products table')) // eslint-disable-line no-console
-        .catch(e => console.error('Error creating products table', e)); // eslint-disable-line no-console
-    }
-  })
-    .catch(e => console.error('Error creating products table', e)); // eslint-disable-line no-console
-
   return products;
 };
