@@ -11,20 +11,22 @@ class farms extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['text'],
+      required: ['farm_name', 'size'],
 
       properties: {
-        text: { type: 'string' }
+        farm_name: { type: 'string' },
+        title_number: { type: 'string' },
+        size: { type: 'number' },
       }
     };
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date().toISOString();
+    this.createdAt = this.updatedAt = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updatedAt = new Date();
   }
 }
 

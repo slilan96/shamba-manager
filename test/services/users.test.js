@@ -7,7 +7,4 @@ describe('\'users\' service', () => {
 
     assert.ok(service, 'Registered the service');
   });
-
-  it('should hash the password of a newly created users', () => {
-  });
 });
