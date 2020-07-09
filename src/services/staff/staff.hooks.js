@@ -1,4 +1,5 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const { protect } = require('@feathersjs/authentication-local').hooks;
 
 module.exports = {
   before: {
@@ -14,7 +15,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [],
+    get: [protect('active')],
     create: [],
     update: [],
     patch: [],
