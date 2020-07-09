@@ -17,8 +17,6 @@ class products extends Model {
         id: 'integer',
         name: 'string',
         units: 'string',
-        created_at: 'string',
-        updated_at: 'string',
       }
     };
   }

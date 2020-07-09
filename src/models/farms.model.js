@@ -22,11 +22,11 @@ class farms extends Model {
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date();
+    this.created_at = this.updated_at = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date();
+    this.updated_at = new Date();
   }
 }
 
