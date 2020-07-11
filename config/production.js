@@ -21,8 +21,8 @@ module.exports = {
       passwordField: 'password'
     }
   },
-
-  host: 3030,
+  host: process.env.FEATHERS_HOST,
+  post: 3030,
   public: '../public',
   postgres: {
     client: 'pg',
