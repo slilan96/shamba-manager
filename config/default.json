@@ -28,9 +28,14 @@
       "passwordField": "password"
     }
   },
-  "mysql": {
-    "client": "mysql2",
-    "connection": "mysql://farm_manager:farm_manager@localhost:3306/feathers_test",
+  "postgres": {
+    "client": "pg",
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "farm_manager",
+      "password": "farm_manager",
+      "database": "shamba_manager"
+    },
     "migrations": {
       "tableName": "knex_migrations",
       "directory": "../database/migrations"

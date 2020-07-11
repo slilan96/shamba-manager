@@ -28,7 +28,7 @@ describe('authentication', () => {
         strategy: 'local',
         ...userInfo
       });
-      
+
       assert.ok(accessToken, 'Created access token for user');
       assert.ok(user, 'Includes user in authentication data');
     });

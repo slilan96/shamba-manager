@@ -1,4 +1,10 @@
 {
-  "host": "some-test-app.feathersjs.com",
-  "port": "PORT"
+  "postgres": {
+    "client": "pg",
+    "connection": "",
+    "migrations": {
+      "tableName": "knex_migrations",
+      "directory": "../database/migrations"
+    }
+  }
 }

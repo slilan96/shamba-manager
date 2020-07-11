@@ -1,3 +1,3 @@
 const app = require('./src/app');
 
-module.exports = app.get('mysql');
+module.exports = app.get('postgres');
