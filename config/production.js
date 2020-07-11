@@ -22,7 +22,7 @@ module.exports = {
     }
   },
   host: process.env.FEATHERS_HOST,
-  post: 3030,
+  port: process.env.PORT,
   public: '../public',
   postgres: {
     client: 'pg',
