@@ -13,7 +13,7 @@ class ApiKeyStrategy extends AuthenticationBaseStrategy {
   authenticate(authRequest, params) {
     const { apiKey } = authRequest;
 
-    if (apiKey !== this.app.get('API_KEY')) {
+    if (apiKey !== this.app.get('apiKey')) {
       throw new NotAuthenticated('Invalid API key');
     }
 

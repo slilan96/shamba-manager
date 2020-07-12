@@ -17,6 +17,7 @@ describe('authentication', () => {
 
     before(async () => {
       try {
+        // TODO try and override apiKey here
         await app.service('users').create(userInfo);
       } catch (error) {
         // Do nothing, it just means the user already exists and can be tested

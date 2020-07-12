@@ -1,4 +1,5 @@
 module.exports = {
+  apiKey: process.env.API_KEY,
   authentication: {
     entity: 'user',
     service: 'users',
