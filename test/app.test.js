@@ -4,30 +4,30 @@ const url = require('url');
 const app = require('../src/app');
 
 const port = app.get('port') || 8998;
-const getUrl = pathname => url.format({
+const getUrl = (pathname) => url.format({
   hostname: app.get('host') || 'localhost',
   protocol: 'http',
   port,
-  pathname
+  pathname,
 });
 
 describe('Feathers application tests', () => {
   let server;
 
-  before(function(done) {
+  before((done) => {
     server = app.listen(port);
     server.once('listening', () => done());
   });
 
-  after(function(done) {
+  after((done) => {
     server.close(done);
   });
 
-  describe('404', function() {
+  describe('404', () => {
     it('shows a 404 JSON error without stack trace', async () => {
       try {
         await axios.get(getUrl('path/to/nowhere'), {
-          json: true
+          json: true,
         });
         assert.fail('should never get here');
       } catch (error) {

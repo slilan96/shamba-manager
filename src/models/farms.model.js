@@ -3,7 +3,6 @@
 const { Model } = require('objection');
 
 class farms extends Model {
-
   static get tableName() {
     return 'farms';
   }
@@ -17,7 +16,7 @@ class farms extends Model {
         farm_name: { type: 'string' },
         title_number: { type: 'string' },
         size: { type: 'number' },
-      }
+      },
     };
   }
 

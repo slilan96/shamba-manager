@@ -1,11 +1,11 @@
 const compress = require('compression');
 const helmet = require('helmet');
 const cors = require('cors');
-const logger = require('./logger');
 
 const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
+const logger = require('./logger');
 
 const middleware = require('./middleware');
 const services = require('./services');
@@ -30,9 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 // Set up Plugins and providers
 app.configure(express.rest());
 
-
 app.configure(objection);
-
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

@@ -6,7 +6,7 @@ exports.Harvests = class Harvests extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 };
