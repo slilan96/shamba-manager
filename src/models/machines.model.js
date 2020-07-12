@@ -10,39 +10,27 @@ class machines extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['text'],
+      required: ['machine_name', 'machine_type'],
 
       properties: {
-        text: { type: 'string' },
+        machine_name: { type: 'string' },
+        registration_number: { type: 'string' },
+        machine_type: { type: 'string' },
+        manufacturer: { type: 'string' },
       },
     };
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date();
+    this.created_at = this.updated_at = new Date();
   }
 
   $beforeUpdate() {
-    this.updatedAt = new Date().toISOString();
+    this.updated_at = new Date();
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 module.exports = function createMachineModel(app) {
-  const db = app.get('knex');
-
-  db.schema.hasTable('machines').then((exists) => {
-    if (!exists) {
-      db.schema.createTable('machines', (table) => {
-        table.increments('id');
-        table.string('text');
-        table.timestamp('createdAt');
-        table.timestamp('updatedAt');
-      })
-        .then(() => console.log('Created machines table')) // eslint-disable-line no-console
-        .catch((e) => console.error('Error creating machines table', e)); // eslint-disable-line no-console
-    }
-  })
-    .catch((e) => console.error('Error creating machines table', e)); // eslint-disable-line no-console
-
   return machines;
 };
