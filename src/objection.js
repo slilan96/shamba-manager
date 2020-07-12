@@ -1,7 +1,8 @@
 const { Model } = require('objection');
 
-module.exports = function (app) {
+module.exports = function createKnexInstance(app) {
   const { client, connection } = app.get('postgres');
+  // eslint-disable-next-line global-require
   const knex = require('knex')({ client, connection, useNullAsDefault: false });
 
   Model.knex(knex);

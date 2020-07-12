@@ -3,7 +3,7 @@ const { Harvests } = require('./harvests.class');
 const createModel = require('../../models/harvests.model');
 const hooks = require('./harvests.hooks');
 
-module.exports = function (app) {
+module.exports = function createHarvestService(app) {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),

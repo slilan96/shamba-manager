@@ -3,7 +3,7 @@ const { Staff } = require('./staff.class');
 const createModel = require('../../models/staff.model');
 const hooks = require('./staff.hooks');
 
-module.exports = function (app) {
+module.exports = function createStaffService(app) {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),

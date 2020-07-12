@@ -3,7 +3,7 @@ const { Machines } = require('./machines.class');
 const createModel = require('../../models/machines.model');
 const hooks = require('./machines.hooks');
 
-module.exports = function (app) {
+module.exports = function createMachineService(app) {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),

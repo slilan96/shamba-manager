@@ -3,7 +3,7 @@ const { Farms } = require('./farms.class');
 const createModel = require('../../models/farms.model');
 const hooks = require('./farms.hooks');
 
-module.exports = function (app) {
+module.exports = function createFarmService(app) {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),

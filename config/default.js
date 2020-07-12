@@ -4,7 +4,7 @@ module.exports = {
   public: '../public/',
   paginate: {
     default: 10,
-    max: 50
+    max: 50,
   },
   authentication: {
     entity: 'user',
@@ -12,21 +12,21 @@ module.exports = {
     secret: 'nGwaenW5WTVN4IHp5EgKneyNdUc=',
     authStrategies: [
       'jwt',
-      'local'
+      'local',
     ],
     jwtOptions: {
       header: {
-        'typ': 'access'
+        typ: 'access',
       },
       audience: 'https://yourdomain.com',
       issuer: 'feathers',
       algorithm: 'HS256',
-      expiresIn: '1d'
+      expiresIn: '1d',
     },
     local: {
       usernameField: 'email',
-      passwordField: 'password'
-    }
+      passwordField: 'password',
+    },
   },
   postgres: {
     client: 'pg',
@@ -34,14 +34,14 @@ module.exports = {
       host: '127.0.0.1',
       user: 'farm_manager',
       password: 'farm_manager',
-      database: 'shamba_manager'
+      database: 'shamba_manager',
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: '../database/migrations'
+      directory: '../database/migrations',
     },
     seeds: {
-      directory: '../database/seeds'
-    }
-  }
+      directory: '../database/seeds',
+    },
+  },
 };

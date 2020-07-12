@@ -3,7 +3,7 @@ const { Products } = require('./products.class');
 const createModel = require('../../models/products.model');
 const hooks = require('./products.hooks');
 
-module.exports = function (app) {
+module.exports = function createProductsService(app) {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),

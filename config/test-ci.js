@@ -5,15 +5,15 @@ module.exports = {
       host: 'postgres',
       user: 'test',
       password: 'test',
-      database: 'test_farm_manager'
+      database: 'test_farm_manager',
     },
     debug: true,
     migrations: {
       tableName: 'knex_migrations',
-      directory: '../database/migrations'
+      directory: '../database/migrations',
     },
     seeds: {
-      directory: '../database/seeds'
-    }
-  }
+      directory: '../database/seeds',
+    },
+  },
 };

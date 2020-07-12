@@ -19,7 +19,7 @@ class machines extends Model {
   }
 
   $beforeInsert() {
-    this.createdAt = this.updatedAt = new Date().toISOString();
+    this.createdAt = this.updatedAt = new Date();
   }
 
   $beforeUpdate() {
@@ -27,7 +27,7 @@ class machines extends Model {
   }
 }
 
-module.exports = function (app) {
+module.exports = function createMachineModel(app) {
   const db = app.get('knex');
 
   db.schema.hasTable('machines').then((exists) => {

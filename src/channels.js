@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function handleChannelManagement(app) {
   if (typeof app.channel !== 'function') {
     // If no real-time functionality has been configured just return
     return;
@@ -28,7 +28,8 @@ module.exports = function (app) {
       // if(user.isAdmin) { app.channel('admins').join(connection); }
 
       // If the user has joined e.g. chat rooms
-      // if(Array.isArray(user.rooms)) user.rooms.forEach(room => app.channel(`rooms/${room.id}`).join(channel));
+      // if(Array.isArray(user.rooms))
+      //   user.rooms.forEach(room => app.channel(`rooms/${room.id}`).join(channel));
 
       // Easily organize users by email and userid for things like messaging
       // app.channel(`emails/${user.email}`).join(channel);
