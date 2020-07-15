@@ -1,4 +1,5 @@
 module.exports = {
+  apiKey: '290f5f88-d510-4e74-934a-7db39bd49536',
   host: 'localhost',
   port: 3030,
   public: '../public/',
