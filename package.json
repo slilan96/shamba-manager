@@ -28,7 +28,7 @@
     "test:local": "NODE_ENV=test yarn test",
     "lint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
-    "start": "yarn run:migrations; node src/",
+    "start": "node src/",
     "mocha": "nyc mocha test/ --recursive --exit",
     "run:migrations": "knex migrate:latest"
   },
