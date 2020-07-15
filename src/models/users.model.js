@@ -3,7 +3,6 @@
 const { Model } = require('objection');
 
 class users extends Model {
-
   static get tableName() {
     return 'users';
   }
@@ -34,7 +33,7 @@ class users extends Model {
   }
 }
 
-//eslint-disable-next-line
+// eslint-disable-next-line
 module.exports = function (app) {
   return users;
 };

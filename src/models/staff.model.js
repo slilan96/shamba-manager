@@ -3,7 +3,6 @@
 const { Model } = require('objection');
 
 class staff extends Model {
-
   static get tableName() {
     return 'staff';
   }
@@ -14,13 +13,13 @@ class staff extends Model {
       required: ['phone_number', 'first_name', 'last_name', 'role'],
 
       properties: {
-        email:'string',
+        email: 'string',
         phone_number: 'string',
         first_name: 'string',
         last_name: 'string',
         role: 'string',
         active: 'boolean',
-      }
+      },
     };
   }
 

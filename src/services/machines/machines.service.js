@@ -3,10 +3,10 @@ const { Machines } = require('./machines.class');
 const createModel = require('../../models/machines.model');
 const hooks = require('./machines.hooks');
 
-module.exports = function (app) {
+module.exports = function initializeFarmsService(app) {
   const options = {
     Model: createModel(app),
-    paginate: app.get('paginate')
+    paginate: app.get('paginate'),
   };
 
   // Initialize our service with any options it requires

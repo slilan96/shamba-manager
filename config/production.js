@@ -5,21 +5,21 @@ module.exports = {
     secret: process.env.JWT_SECRET,
     authStrategies: [
       'jwt',
-      'local'
+      'local',
     ],
     jwtOptions: {
       header: {
-        'typ': 'access'
+        typ: 'access',
       },
       audience: process.env.JWT_AUDIENCE,
       issuer: 'feathers',
       algorithm: 'HS256',
-      expiresIn: '1d'
+      expiresIn: '1d',
     },
     local: {
       usernameField: 'email',
-      passwordField: 'password'
-    }
+      passwordField: 'password',
+    },
   },
   host: process.env.FEATHERS_HOST,
   port: process.env.PORT,
@@ -28,8 +28,8 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      'tableName': 'knex_migrations',
-      'directory': '../database/migrations'
-    }
-  }
+      tableName: 'knex_migrations',
+      directory: '../database/migrations',
+    },
+  },
 };

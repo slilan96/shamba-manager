@@ -6,7 +6,7 @@ exports.Farms = class Farms extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 };

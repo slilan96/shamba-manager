@@ -6,7 +6,7 @@ exports.Staff = class Staff extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 };

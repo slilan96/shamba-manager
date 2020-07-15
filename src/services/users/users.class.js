@@ -6,7 +6,7 @@ exports.Users = class Users extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 };

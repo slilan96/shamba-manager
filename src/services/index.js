@@ -5,7 +5,7 @@ const machines = require('./machines/machines.service.js');
 const harvests = require('./harvests/harvests.service.js');
 const staff = require('./staff/staff.service.js');
 // eslint-disable-next-line no-unused-vars
-module.exports = function (app) {
+module.exports = function configureServices(app) {
   app.configure(users);
   app.configure(farms);
   app.configure(products);

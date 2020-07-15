@@ -6,7 +6,7 @@ exports.Products = class Products extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 };

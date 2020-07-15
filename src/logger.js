@@ -5,10 +5,10 @@ const logger = createLogger({
   level: process.env.LOG_LEVEL || 'debug',
   format: format.combine(
     format.splat(),
-    format.simple()
+    format.simple(),
   ),
   transports: [
-    new transports.Console()
+    new transports.Console(),
   ],
 });
 

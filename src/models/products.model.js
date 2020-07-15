@@ -3,7 +3,6 @@
 const { Model } = require('objection');
 
 class products extends Model {
-
   static get tableName() {
     return 'products';
   }
@@ -17,7 +16,7 @@ class products extends Model {
         id: 'integer',
         name: 'string',
         units: 'string',
-      }
+      },
     };
   }
 

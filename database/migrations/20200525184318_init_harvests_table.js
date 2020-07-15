@@ -1,4 +1,3 @@
-
 exports.up = function createHarvestTable(knex) {
   return knex.schema.createTable('harvests', (table) => {
     table.increments('id').primary();

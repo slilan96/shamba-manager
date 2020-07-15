@@ -1,5 +1,5 @@
 // create users table
-exports.up = function(knex) {
+exports.up = function createUsersTable(knex) {
   return knex.schema.createTable('users', (table) => {
     table.increments('id').primary();
     table.string('email');
@@ -12,6 +12,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function dropUsersTable(knex) {
   return knex.schema.dropTable('users');
 };

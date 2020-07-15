@@ -1,5 +1,5 @@
 // create staff table
-exports.up = function(knex) {
+exports.up = function createStaffTable(knex) {
   return knex.schema.createTable('staff', (table) => {
     table.increments('id').primary();
     table.string('email');
@@ -12,6 +12,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function dropStaffTable(knex) {
   return knex.schema.dropTable('staff');
 };
