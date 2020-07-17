@@ -17,7 +17,7 @@ class users extends Model {
         password: 'string',
         first_name: 'string',
         last_name: 'string',
-        role: 'string',
+        role: { type: 'string', pattern: '^(administrator|supervisor|farm-worker)$' },
         created_at: 'string',
         updated_at: 'string',
       },
