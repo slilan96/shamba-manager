@@ -1,4 +1,5 @@
 module.exports = {
+  allowedOrigins: process.env.ALLOWED_ORIGINS,
   apiKey: process.env.API_KEY,
   authentication: {
     entity: 'user',
