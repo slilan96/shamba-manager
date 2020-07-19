@@ -27,7 +27,7 @@ stages:
 before_script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
-  - gem install dpl
+  - gem install dpl --pre
 
 setup_project:
   stage: build
@@ -48,14 +48,14 @@ deploy_staging:
   stage: deploy
   image: ruby:latest
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
-      #  only:
-      #- /^v[0-9]+\.[0-9]+\.[0-9]+-rc[0-9]+$/
+    - dpl heroku api --app=$HEROKU_APP_STAGING --api_key=$HEROKU_API_KEY
+  only:
+    - /^v(\d+\.)(\d+\.)(\d+)-(rc\d+)$/
 
 deploy_production:
   stage: deploy
   image: ruby:latest
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - dpl heroku api --app=$HEROKU_APP_PRODUCTION --api_key=$HEROKU_API_KEY
   only:
-    - /^v[0-9]+\.[0-9]+\.[0-9]+\.$/
+    - /^v(\d+\.)(\d+\.)(\d+)$/
