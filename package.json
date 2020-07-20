@@ -1,7 +1,7 @@
 {
   "name": "shamba-manager",
   "description": "",
-  "version": "0.1.0-rc2",
+  "version": "0.1.0",
   "homepage": "",
   "private": true,
   "main": "src",
@@ -24,6 +24,7 @@
     "yarn": ">= 0.18.0"
   },
   "scripts": {
+    "commit": "git-cz",
     "test": "yarn run:migrations && yarn mocha",
     "test:local": "NODE_ENV=test yarn test",
     "lint": "eslint src/. test/. --config .eslintrc.json",
@@ -75,8 +76,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git-cz --hook || true"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "config": {
