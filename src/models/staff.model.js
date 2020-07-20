@@ -19,6 +19,7 @@ class staff extends Model {
         last_name: 'string',
         role: { type: 'string', pattern: '^(administrator|supervisor|farm-worker)$' },
         active: 'boolean',
+        national_id: 'string',
       },
     };
   }
