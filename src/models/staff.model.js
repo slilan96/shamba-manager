@@ -10,7 +10,7 @@ class staff extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['phone_number', 'first_name', 'last_name', 'role'],
+      required: ['first_name', 'last_name', 'role'],
 
       properties: {
         email: 'string',
