@@ -1,7 +1,7 @@
 {
   "name": "shamba-manager",
   "description": "",
-  "version": "0.2.2-rc.0",
+  "version": "0.2.2",
   "homepage": "",
   "private": true,
   "main": "src",
