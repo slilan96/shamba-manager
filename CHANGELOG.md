@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2-rc.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.0...v0.2.2-rc.0) (2020-07-20)
+
 ### [0.2.1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.0...v0.2.1) (2020-07-20)
 
 ## [0.1.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.1.0-rc2...v0.1.0) (2020-07-20)
