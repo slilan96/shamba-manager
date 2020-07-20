@@ -58,13 +58,19 @@
     "winston": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
     "axios": "^0.19.2",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
     "mocha": "^7.0.1",
     "nodemon": "^2.0.2",
     "nyc": "^15.0.1",
     "standard-version": "^8.0.2"
+  },
+  "husky": {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
