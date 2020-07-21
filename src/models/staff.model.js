@@ -17,7 +17,7 @@ class staff extends Model {
         phone_number: 'string',
         first_name: 'string',
         last_name: 'string',
-        role: { type: 'string', pattern: '^(administrator|supervisor|farm-worker)$' },
+        role: { type: 'string', pattern: '^(administrator|supervisor|farm-worker|foreman)$' },
         active: 'boolean',
         national_id: 'string',
       },
