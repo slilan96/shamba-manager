@@ -1,7 +1,9 @@
-const { AuthenticationService, JWTStrategy, AuthenticationBaseStrategy } = require('@feathersjs/authentication');
+const { JWTStrategy, AuthenticationBaseStrategy } = require('@feathersjs/authentication');
 const { LocalStrategy } = require('@feathersjs/authentication-local');
 const { expressOauth } = require('@feathersjs/authentication-oauth');
 const { NotAuthenticated } = require('@feathersjs/errors');
+
+const AuthServiceWithPayload = require('./services/authentication/authentication.service');
 
 class ApiKeyStrategy extends AuthenticationBaseStrategy {
   constructor(headerField = 'x-api-key') {
@@ -41,7 +43,7 @@ class ApiKeyStrategy extends AuthenticationBaseStrategy {
 }
 
 module.exports = (app) => {
-  const authentication = new AuthenticationService(app);
+  const authentication = new AuthServiceWithPayload(app);
 
   authentication.register('jwt', new JWTStrategy());
   authentication.register('local', new LocalStrategy());
