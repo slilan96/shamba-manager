@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.3...v0.2.4) (2020-07-22)
+
+
+### Features
+
+* **staff model:** drop national id column from staff table ([54329ee](https://gitlab.com/slilanPropane/shamba-manager/commit/54329eeee15e832f05f55c8a06a8caca79154ecc))
+* add role to jwt payload to help frontends that have permissioned views ([c3a132d](https://gitlab.com/slilanPropane/shamba-manager/commit/c3a132d8eef6bb12ba2a3ffce753283dcbabffc6))
+
 ### [0.2.3](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.2...v0.2.3) (2020-07-21)
 
 
