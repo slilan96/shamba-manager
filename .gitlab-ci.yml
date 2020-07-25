@@ -50,7 +50,7 @@ deploy_staging:
   script:
     - dpl heroku api --app=$HEROKU_APP_STAGING --api_key=$HEROKU_API_KEY
   only:
-    - /^v(\d+\.)(\d+\.)(\d+)-(rc\d+)$/
+    - /^v(\d+\.)(\d+\.)(\d+)-(\d+)$/
 
 deploy_production:
   stage: deploy
