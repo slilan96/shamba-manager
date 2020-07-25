@@ -64,7 +64,7 @@
     "objection": "^2.1.2",
     "pg": "^8.3.0",
     "serve-favicon": "^2.5.0",
-    "snyk": "^1.364.0",
+    "snyk": "^1.366.2",
     "winston": "^3.0.0"
   },
   "devDependencies": {
