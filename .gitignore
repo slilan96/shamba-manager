@@ -110,3 +110,6 @@ $RECYCLE.BIN/
 lib/
 data/
 .nyc_output/
+
+# Vim swp files
+*.swp

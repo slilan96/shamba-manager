@@ -1,11 +1,12 @@
 // Application hooks that run for every service
+const rateLimit = require('./customHooks/rateLimiter');
 
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [rateLimit({ tokensPerInterval: 5, interval: 60 * 1000 })],
     update: [],
     patch: [],
     remove: [],
