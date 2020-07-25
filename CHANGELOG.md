@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.5-2...v0.3.0-1) (2020-07-25)
+
+
+### Features
+
+* add rate limiter ([2dd5bec](https://gitlab.com/slilanPropane/shamba-manager/commit/2dd5bec1fe4a195b2101c9bf2e987931b94e75ba))
+
 ## [0.3.0-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.5-2...v0.3.0-0) (2020-07-25)
 
 
