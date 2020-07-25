@@ -30,11 +30,12 @@
     "lint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
-    "mocha": "nyc mocha test/ --recursive --exit",
+    "mocha": "mocha test/ --recursive --exit",
     "run:migrations": "knex migrate:latest",
     "release": "standard-version",
     "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "prepare": "yarn run snyk-protect",
+    "coverage": "nyc mocha test/ --recursive --exit"
   },
   "standard": {
     "env": [

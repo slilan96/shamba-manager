@@ -12,14 +12,17 @@ describe('authentication', () => {
       first_name: 'Ben',
       last_name: 'Test',
       password: 'supersecret',
-      role: 'admin',
+      role: 'administrator',
     };
 
     before(async () => {
       try {
-        await app.service('users').create(userInfo);
+        await app.service('users').create(userInfo, {
+          headers: { 'x-api-key': app.get('apiKey') },
+        });
       } catch (error) {
         // Do nothing, it just means the user already exists and can be tested
+        console.log(error); // eslint-disable-line
       }
     });
 
