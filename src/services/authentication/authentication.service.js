@@ -13,4 +13,8 @@ class AuthServiceWithPayload extends AuthenticationService {
   }
 }
 
+AuthServiceWithPayload.prototype.docs = {
+  description: 'An authentication service for the API\'s consumers',
+};
+
 module.exports = AuthServiceWithPayload;
