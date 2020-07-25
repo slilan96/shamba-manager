@@ -13,7 +13,7 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
-const authentication = require('./authentication');
+const authentication = require('./services/authentication/authentication.service');
 const objection = require('./objection');
 const { version } = require('../package.json');
 

@@ -1,20 +1,54 @@
-const { AuthenticationService } = require('@feathersjs/authentication');
+const { JWTStrategy, AuthenticationBaseStrategy } = require('@feathersjs/authentication');
+const { LocalStrategy } = require('@feathersjs/authentication-local');
+const { expressOauth } = require('@feathersjs/authentication-oauth');
+const { NotAuthenticated } = require('@feathersjs/errors');
 
-class AuthServiceWithPayload extends AuthenticationService {
-  async getPayload(authResult, params) {
-    const payload = await super.getPayload(authResult, params);
-    const { user } = authResult;
+const { AuthServiceWithPayload } = require('./authentication.class');
 
-    if (user && user.role) {
-      payload.permissions = user.role;
+class ApiKeyStrategy extends AuthenticationBaseStrategy {
+  constructor(headerField = 'x-api-key') {
+    super();
+    this.headerField = headerField;
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  authenticate(authRequest, params) {
+    const { apiKey } = authRequest;
+
+    if (apiKey !== this.app.get('apiKey')) {
+      throw new NotAuthenticated('Invalid API key');
     }
 
-    return payload;
+    // To add a user look it up from the service
+    // const [ user ] = await this.app.service('users').get({ ...params, query: userQuery })
+
+    return {
+      apiKey: true,
+      // user
+    };
+  }
+
+  parse(req) {
+    const apiKey = req.headers[this.headerField];
+
+    if (apiKey) {
+      return {
+        strategy: this.name,
+        apiKey,
+      };
+    }
+
+    return null;
   }
 }
 
-AuthServiceWithPayload.prototype.docs = {
-  description: 'An authentication service for the API\'s consumers',
-};
+module.exports = (app) => {
+  const authentication = new AuthServiceWithPayload(app);
 
-module.exports = AuthServiceWithPayload;
+  authentication.register('jwt', new JWTStrategy());
+  authentication.register('local', new LocalStrategy());
+  authentication.register('apiKey', new ApiKeyStrategy());
+
+  app.use('/authentication', authentication);
+  app.configure(expressOauth());
+};
