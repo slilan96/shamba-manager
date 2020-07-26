@@ -5,10 +5,10 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       user: 'farm_manager',
+      port: 5500,
       password: 'farm_manager',
-      database: 'test_shamba_manager',
+      database: 'test_farm_manager',
     },
-    debug: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: '../database/migrations',

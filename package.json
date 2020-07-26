@@ -25,17 +25,18 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "test": "yarn run:migrations && yarn mocha",
-    "test:local": "NODE_ENV=test yarn test",
+    "test": "yarn test:mocha",
+    "test:local": "NODE_ENV=test yarn test:mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json",
-    "dev": "nodemon src/",
+    "dev": "yarn run:migrations && nodemon src/",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive --exit",
+    "test:mocha": "mocha test/migrations/migrations.test.js test/appTests/**/*.test.js --exit",
     "run:migrations": "knex migrate:latest",
     "release": "standard-version",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect",
-    "coverage": "nyc mocha test/ --recursive --exit"
+    "coverage": "nyc mocha test/ --recursive --exit",
+    "rollback": "NODE_ENV=test knex migrate:rollback"
   },
   "standard": {
     "env": [
@@ -80,7 +81,9 @@
     "mocha": "^7.0.1",
     "nodemon": "^2.0.2",
     "nyc": "^15.0.1",
-    "standard-version": "^8.0.2"
+    "standard-version": "^8.0.2",
+    "unexpected": "^11.14.0",
+    "unexpected-knex": "^3.0.0"
   },
   "husky": {
     "hooks": {
