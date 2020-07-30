@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.0-2...v0.3.0) (2020-07-30)
+
+
+### Bug Fixes
+
+* remove staff pagination from staff model ([c932840](https://gitlab.com/slilanPropane/shamba-manager/commit/c9328400de64322e430e3f127225766e6122d867))
+
 ## [0.3.0-2](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.0-1...v0.3.0-2) (2020-07-26)
 
 ## [0.3.0-1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.2.5-2...v0.3.0-1) (2020-07-25)
