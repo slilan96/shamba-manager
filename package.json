@@ -28,7 +28,7 @@
     "test": "yarn test:mocha",
     "test:local": "NODE_ENV=test yarn test:mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json",
-    "dev": "yarn run:migrations && node .src/utils/create-seed-data.js && nodemon src/",
+    "dev": "yarn run:migrations && node src/utils/create-seed-data.js && nodemon src/",
     "start": "node src/",
     "test:mocha": "mocha test/migrations/migrations.test.js test/appTests/**/*.test.js --exit",
     "run:migrations": "knex migrate:latest",
