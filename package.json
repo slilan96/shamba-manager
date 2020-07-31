@@ -28,15 +28,14 @@
     "test": "yarn test:mocha",
     "test:local": "NODE_ENV=test yarn test:mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json",
-    "dev": "yarn run:migrations && nodemon src/",
+    "dev": "yarn run:migrations && node .src/utils/create-seed-data.js && nodemon src/",
     "start": "node src/",
     "test:mocha": "mocha test/migrations/migrations.test.js test/appTests/**/*.test.js --exit",
     "run:migrations": "knex migrate:latest",
     "release": "standard-version",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect",
-    "coverage": "nyc mocha test/ --recursive --exit",
-    "rollback": "NODE_ENV=test knex migrate:rollback"
+    "coverage": "nyc mocha test/ --recursive --exit"
   },
   "standard": {
     "env": [
@@ -56,6 +55,7 @@
     "chai-as-promised": "^7.1.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
+    "faker": "^4.1.0",
     "feathers-objection": "^4.8.1",
     "feathers-swagger": "^1.2.1",
     "helmet": "^3.21.2",

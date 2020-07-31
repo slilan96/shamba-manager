@@ -7,6 +7,7 @@ module.exports = function initializeStaffService(app) {
   const options = {
     Model: createModel(app),
     paginate: false,
+    multi: true,
   };
 
   // Initialize our service with any options it requires

@@ -1,9 +1,9 @@
 #!/bin/bash -eu
 
 docker run --rm -d \
---name shamba-manager-dev \
+--name pg-docker \
 -e POSTGRES_PASSWORD=farm_manager \
 -e POSTGRES_USER=farm_manager \
--e POSTGRES_DB=shamba_manager \
--p 5000:5432  \
+-e POSTGRES_DB=test_farm_manager \
+-p 5500:5432  \
 postgres
