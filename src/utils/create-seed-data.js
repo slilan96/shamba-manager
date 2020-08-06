@@ -116,6 +116,7 @@ async function createHarvests() {
       harvesting_worker: faker.random.arrayElement(farmWorkerIds),
       clerk: faker.random.arrayElement(recordingOfficersIds),
       harvest_farm: faker.random.arrayElement(farmIds),
+      date_of_harvest: faker.date.recent(),
       harvested_product: faker.random.arrayElement(productIds),
     });
   }
