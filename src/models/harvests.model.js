@@ -10,13 +10,14 @@ class harvests extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'harvested_product'],
+      required: ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'date_of_harvest', 'harvested_product'],
 
       properties: {
         amount: 'number',
         harvesting_worker: 'string',
         clerk: 'string',
         harvest_farm: 'string',
+        date_of_harvest: 'string',
         harvested_product: 'string',
       },
     };
