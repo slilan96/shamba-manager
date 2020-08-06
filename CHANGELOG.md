@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.1...v0.3.2) (2020-08-06)
+
+
+### Bug Fixes
+
+* remove global rate limiter ([acb7778](https://gitlab.com/slilanPropane/shamba-manager/commit/acb777806a0ff6c69b6cc0f85447157c0d47684d))
+
 ### [0.3.1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.1-0...v0.3.1) (2020-08-06)
 
 ### [0.3.1-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.0...v0.3.1-0) (2020-08-06)
