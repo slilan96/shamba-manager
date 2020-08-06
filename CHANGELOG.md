@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.0...v0.3.1-0) (2020-08-06)
+
+
+### Features
+
+* add date_of_harvest to harvests table ([6fe1408](https://gitlab.com/slilanPropane/shamba-manager/commit/6fe1408d88bcd76301d5280042cf47b043cb970e))
+
+
+### Bug Fixes
+
+* fix incorrect path for command in package.json ([8aa76fc](https://gitlab.com/slilanPropane/shamba-manager/commit/8aa76fc3b2f4fd7d0afefb52ddf54a48c8bfb218))
+* package.json, yarn.lock & .snyk to reduce vulnerabilities ([3ee1477](https://gitlab.com/slilanPropane/shamba-manager/commit/3ee1477e33c165dd1a6832ad32d208d7df6c6797))
+* package.json, yarn.lock & .snyk to reduce vulnerabilities ([393e773](https://gitlab.com/slilanPropane/shamba-manager/commit/393e7738fdca3c4706ce143086e005c911265a50))
+* package.json, yarn.lock & .snyk to reduce vulnerabilities ([fda898a](https://gitlab.com/slilanPropane/shamba-manager/commit/fda898ad8688e085ef236d7c75f863d81a91b508))
+
 ## [0.3.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.0-2...v0.3.0) (2020-07-30)
 
 
