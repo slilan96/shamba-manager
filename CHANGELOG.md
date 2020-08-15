@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.2...v0.3.3) (2020-08-15)
+
+
+### Features
+
+* add harvest_table_view ([f11bee9](https://gitlab.com/slilanPropane/shamba-manager/commit/f11bee91388881cd6a998449ed05c0a622cd31dd))
+
 ### [0.3.2](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.1...v0.3.2) (2020-08-06)
 
 
