@@ -2,7 +2,7 @@ const feathers = require('@feathersjs/feathers');
 const { TooManyRequests } = require('@feathersjs/errors');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const rateLimit = require('../../../src/customHooks/rateLimiter');
+const rateLimit = require('../../../src/hooks/rate-limiter');
 
 chai.use(chaiAsPromised);
 const { assert } = chai;
