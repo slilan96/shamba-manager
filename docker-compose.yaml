@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3030:3030
+    command: yarn dev
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - 5000:5432
+    environment:
+      POSTGRES_PASSWORD: farm_manager
+      POSTGRES_USER: farm_manager
+      POSTGRES_DB: shamba_manager
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U farm_manager -d shamba_manager"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

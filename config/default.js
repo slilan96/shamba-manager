@@ -32,8 +32,8 @@ module.exports = {
   postgres: {
     client: 'pg',
     connection: {
-      host: '127.0.0.1',
-      port: 5000,
+      host: 'postgres',
+      port: 5432,
       user: 'farm_manager',
       password: 'farm_manager',
       database: 'shamba_manager',

@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  api:
+    build: .
+    command: yarn test
+    environment:
+      NODE_ENV: production
+      API_KEY: "290f5f88-d510-4e74-934a-7db39bd49536"
+      DATABASE_URL: "postgresql://farm_manager:farm_manager@postgres:5432/shamba_manager"
+      JWT_SECRET: "cats and dogs"
+      JWT_AUDIENCE: "https://some.domain.com"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: farm_manager
+      POSTGRES_USER: farm_manager
+      POSTGRES_DB: shamba_manager
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U farm_manager -d shamba_manager"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

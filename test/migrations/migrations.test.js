@@ -3,7 +3,7 @@ const knex = require('knex');
 const expect = require('unexpected').clone().use(require('unexpected-knex'));
 const app = require('../../src/app');
 
-// For this test to work, knex has to be instanciated manually :(
+// For this test to work, knex has to be instantiated manually :(
 const knexInstance = knex(app.get('postgres'));
 
 async function dropAllTables() {
