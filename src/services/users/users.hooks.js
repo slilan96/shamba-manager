@@ -1,7 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
-const allowApiKey = require('../../customHooks/allowApiKey');
-const rateLimit = require('../../customHooks/rateLimiter');
+
+const rateLimit = require('../../hooks/rate-limiter');
+const allowApiKey = require('../../hooks/allow-api-key');
 
 module.exports = {
   before: {
