@@ -11,5 +11,5 @@ exports.up = function createMachinesTables(knex) {
 };
 
 exports.down = function dropMachinesTable(knex) {
-  return knex.schema.dropTable('farms');
+  return knex.schema.dropTable('machines');
 };

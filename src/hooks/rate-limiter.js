@@ -18,6 +18,10 @@ module.exports = function limitApiCall(options = {
       throw new Error('options.method does not match the method in which this hook was registered');
     }
 
+    // check if hook was disabled for service. ONLY USE FOR TESTING
+    // TODO add check to disable this in a production environment
+    if (context.params.disableRateLimit) return context;
+
     if (!limiter.tryRemoveTokens(1)) {
       throw new TooManyRequests('Too many requests in a given interval on service');
     }

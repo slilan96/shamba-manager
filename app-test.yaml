@@ -3,6 +3,8 @@ services:
   api:
     build: .
     command: yarn test
+    volumes:
+      - .:/usr/src/app
     environment:
       NODE_ENV: production
       API_KEY: "290f5f88-d510-4e74-934a-7db39bd49536"
