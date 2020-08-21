@@ -1,10 +1,46 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const { MethodNotAllowed } = require('@feathersjs/errors');
+const faker = require('faker');
+const _ = require('lodash');
+const { MethodNotAllowed, NotAuthenticated } = require('@feathersjs/errors');
 const app = require('../../../../src/app');
 
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
+
+function createStaffWithRole(role) {
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
+
+  const staff = {
+    email: faker.internet.email(firstName, lastName),
+    phone_number: faker.phone.phoneNumber(),
+    first_name: firstName,
+    last_name: lastName,
+    role,
+  };
+
+  return app.service('staff').create(staff);
+}
+
+function createFarm() {
+  const farm = {
+    farm_name: faker.random.word(),
+    title_number: faker.finance.account(),
+    size: faker.random.number(),
+  };
+
+  return app.service('farms').create(farm);
+}
+
+function createProduct() {
+  const product = {
+    name: faker.random.word(),
+    units: 'kg',
+  };
+
+  return app.service('products').create(product);
+}
 
 describe('\'harvests\' service', () => {
   afterEach(async () => {
@@ -25,9 +61,50 @@ describe('\'harvests\' service', () => {
   describe('POST creating a new harvest', () => {
     it('should create a harvest given valid input', async () => {
       // given
+      const product = await createProduct();
+      const farm = await createFarm();
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
+
+      const harvest = {
+        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        harvesting_worker: farmWorker.id.toString(),
+        clerk: recordingOfficer.id.toString(),
+        harvest_farm: farm.id.toString(),
+        date_of_harvest: faker.date.recent(),
+        harvested_product: product.id.toString(),
+      };
+
+      // when
+      const res = await app.service('harvests').create(harvest);
+
+      // then
+      expect(res).to.include(_.omit(harvest, 'date_of_harvest'));
+      expect(res.date_of_harvest).to.deep.equal(harvest.date_of_harvest);
     });
 
     it('should create a harvest given valid input from authenticated external request', async () => {
+      // given
+      const product = await createProduct();
+      const farm = await createFarm();
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
+
+      const harvest = {
+        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        harvesting_worker: farmWorker.id.toString(),
+        clerk: recordingOfficer.id.toString(),
+        harvest_farm: farm.id.toString(),
+        date_of_harvest: faker.date.recent(),
+        harvested_product: product.id.toString(),
+      };
+
+      // when
+      const res = await app.service('harvests').create(harvest, { provider: 'external', authenticated: true });
+
+      // then
+      expect(res).to.include(_.omit(harvest, 'date_of_harvest'));
+      expect(res.date_of_harvest).to.deep.equal(harvest.date_of_harvest);
     });
 
     it('should reject a create request if the farm does not exist', async () => {
@@ -43,6 +120,26 @@ describe('\'harvests\' service', () => {
     });
 
     it('should reject harvest data if external request is not authenticated', async () => {
+      // given
+      const product = await createProduct();
+      const farm = await createFarm();
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
+
+      const harvest = {
+        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        harvesting_worker: farmWorker.id.toString(),
+        clerk: recordingOfficer.id.toString(),
+        harvest_farm: farm.id.toString(),
+        date_of_harvest: faker.date.recent(),
+        harvested_product: product.id.toString(),
+      };
+
+      // when
+      const res = app.service('harvests').create(harvest, { provider: 'external' });
+
+      // then
+      await expect(res).to.be.rejectedWith(NotAuthenticated);
     });
   });
 

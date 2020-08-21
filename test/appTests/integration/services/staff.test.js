@@ -43,7 +43,7 @@ describe('\'staff\' service', () => {
 
     it('should reject staff creation if one of the required fields is missing', async () => {
       // given
-      const requiredFields = ['email', 'first_name', 'last_name', 'role'];
+      const requiredFields = ['first_name', 'last_name', 'role'];
       const ommittedField = faker.random.arrayElement(requiredFields);
 
       // when
