@@ -1,11 +1,13 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const checkHarvestInputParameters = require('../../hooks/check-harvest-input-parameters');
+
 module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [],
+    create: [checkHarvestInputParameters()],
     update: [],
     patch: [],
     remove: [],
