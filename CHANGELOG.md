@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.0-0...v0.4.0) (2020-08-22)
+
+
+### Bug Fixes
+
+* package.json, yarn.lock & .snyk to reduce vulnerabilities ([cf1076c](https://gitlab.com/slilanPropane/shamba-manager/commit/cf1076c977d0ac0966bf0c852b74c8ff8838e854))
+
 ## [0.4.0-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.3.3...v0.4.0-0) (2020-08-21)
 
 
