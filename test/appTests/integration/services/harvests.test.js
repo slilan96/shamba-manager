@@ -42,6 +42,11 @@ function createProduct() {
   return app.service('products').create(product);
 }
 
+function createProject() {
+  const project = { project_name: faker.random.word() };
+  return app.service('projects').create(project);
+}
+
 describe('\'harvests\' service', () => {
   afterEach(async () => {
     const knex = app.get('knex');
@@ -65,6 +70,7 @@ describe('\'harvests\' service', () => {
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -73,6 +79,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -89,6 +96,7 @@ describe('\'harvests\' service', () => {
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -97,6 +105,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -112,6 +121,7 @@ describe('\'harvests\' service', () => {
       const product = await createProduct();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -120,6 +130,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: faker.random.number(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -134,6 +145,7 @@ describe('\'harvests\' service', () => {
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -142,6 +154,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: faker.random.number(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -156,6 +169,7 @@ describe('\'harvests\' service', () => {
       const product = await createProduct();
       const farm = await createFarm();
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -164,6 +178,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -178,6 +193,7 @@ describe('\'harvests\' service', () => {
       const product = await createProduct();
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -186,6 +202,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -201,6 +218,7 @@ describe('\'harvests\' service', () => {
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -209,6 +227,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       // when
@@ -224,6 +243,8 @@ describe('\'harvests\' service', () => {
       const farm = await createFarm();
       const recordingOfficer = await createStaffWithRole('foreman');
       const farmWorker = await createStaffWithRole('farm-worker');
+      // TODO: ADD PROJECT TO REQUIRED FIELDS
+      const project = await createProject();
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -232,6 +253,7 @@ describe('\'harvests\' service', () => {
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
+        project_id: project.id.toString(),
       };
 
       const fields = ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'date_of_harvest', 'harvested_product'];
@@ -244,6 +266,8 @@ describe('\'harvests\' service', () => {
       // then
       await expect(res).to.be.rejected;
     });
+
+    // TODO: add test to forbid project entries if it's not supplied
   });
 
   describe('PUT updating/replacing a harvests', () => {
