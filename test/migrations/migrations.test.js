@@ -114,4 +114,22 @@ describe('Migrations Tests', () => {
         .then(() => expect(knexInstance, 'to have column', { harvests: 'date_of_harvest' }))
     ));
   });
+
+  describe('Creating the \'projects\' table', () => {
+    it('should create a projects table', () => (
+      expect(knexInstance, 'to apply migration', '20200831174024_create_projects_table.js')
+        .then(() => {
+          const cols = ['id', 'project_name'];
+          return expect(knexInstance, 'to have table', 'projects')
+            .and('to have columns', { projects: cols });
+        })
+    ));
+  });
+
+  describe('Adding \'project_id\' field to harvests table', () => {
+    it('should add the project_id field to the harvests table', () => (
+      expect(knexInstance, 'to apply migration', '20200831175536_add_project_id_to_harvest_table.js')
+        .then(() => expect(knexInstance, 'to have column', { harvests: 'project_id' }))
+    ));
+  });
 });

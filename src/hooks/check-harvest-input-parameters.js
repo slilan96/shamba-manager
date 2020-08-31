@@ -12,7 +12,8 @@ module.exports = function checkHarvestInputParams(options = {}) {
     await app.service('products').get(data.harvested_product);
     await app.service('staff').get(data.clerk);
     await app.service('staff').get(data.harvesting_worker);
-
+    // TODO: uncomment this when there is sufficient support
+    // await app.service('projects').get(data.project_id);
     return context;
   };
 };

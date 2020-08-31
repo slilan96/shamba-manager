@@ -10,6 +10,7 @@ class harvests extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
+      // TODO: ensure that you can support project id once frontend is updated to support it
       required: ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'date_of_harvest', 'harvested_product'],
 
       properties: {
@@ -19,6 +20,7 @@ class harvests extends Model {
         harvest_farm: 'string',
         date_of_harvest: 'string',
         harvested_product: 'string',
+        project_id: 'string',
       },
     };
   }
