@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.0...v0.4.1-0) (2020-08-31)
+
+
+### Features
+
+* support projects ([58073ea](https://gitlab.com/slilanPropane/shamba-manager/commit/58073ea2ddefc5dbbea875ab1b4701564a77cd1f))
+
+
+### Bug Fixes
+
+* add project_id field to harvest service tests ([6c0d3f6](https://gitlab.com/slilanPropane/shamba-manager/commit/6c0d3f62a8c1bb8242f8fe47dfbbdd32ebba4fe2))
+
 ## [0.4.0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.0-0...v0.4.0) (2020-08-22)
 
 
