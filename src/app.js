@@ -19,6 +19,13 @@ const { version } = require('../package.json');
 
 const app = express(feathers());
 
+function forceSsl(req, res, next) {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  return next();
+}
+
 // Load app configuration
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
@@ -26,6 +33,7 @@ app.use(helmet());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(cors({ origin: app.get('allowedOrigins') }));
+  app.use(forceSsl);
 } else {
   app.use(cors());
 }
