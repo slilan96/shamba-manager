@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1-1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.1-0...v0.4.1-1) (2020-09-04)
+
+
+### Bug Fixes
+
+* **https:** force production instances to use https ([e1a857c](https://gitlab.com/slilanPropane/shamba-manager/commit/e1a857c9af9f16efabc404edd78afea8e4dd6fab))
+
 ### [0.4.1-0](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.0...v0.4.1-0) (2020-08-31)
 
 
