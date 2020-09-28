@@ -1,4 +1,4 @@
-name: PostgreSQL service example
+name: Shamba Manager Continuous Integration
 on: [push, pull_request]
 
 jobs:
@@ -33,6 +33,6 @@ jobs:
         run: yarn lint
 
       - name: Integration tests
-        # Runs a script that creates a PostgreSQL client, populates
-        # the client with data, and retrieves data
         run: yarn test
+        env:
+          NODE_ENV: test-ci
