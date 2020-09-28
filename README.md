@@ -27,7 +27,7 @@ disk are picked up by `nodemon` so you can go on with your regular dev
 pattern.
 
 If you wish to use your computer's local `postgres` server, then all
-you need to do is change the database connecitonconfiguration in
+you need to do is change the database connection configuration in
 `config/default.js`. Happy hacking!
 
 ## Testing
@@ -39,7 +39,7 @@ will run the whole test suite (unit + integration) using `docker-compose`.
 
 I also deliberately set the `NODE_ENV=production` in order to replicate
 the tests on a production like environment. This is important because some
-of the packages make some changes and optimization when `NODE_ENV`=production
+of the packages make some changes and optimization when `NODE_ENV=production`
 so it would be nice to test that as well.
 
 If you prefer to use a custom postrges server that's not docker,
