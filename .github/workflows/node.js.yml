@@ -48,9 +48,9 @@ jobs:
         id: check-tag
         run:
         |
-          if [[ ${{ github.event.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)-(\d+)$ ]]; then
+          if [[ ${{ github.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)-(\d+)$ ]]; then
               echo ::set-output name=staging::true
-          elif [[ ${{ github.event.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)$ ]]; then
+          elif [[ ${{ github.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)$ ]]; then
               echo ::set-output name=production::true
           fi
 
