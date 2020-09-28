@@ -2,8 +2,7 @@ name: Shamba Manager Continuous Integration
 on: [push, pull_request]
 
 jobs:
-  # Label of the container job
-  container-job:
+  setup-and-tests:
     runs-on: ubuntu-latest
 
     container: node:lts
