@@ -48,10 +48,10 @@ jobs:
         id: check-tag
         run:
         |
-          if [[ ${{ github.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)-(\d+)$ ]]; then
-              echo ::set-output name=staging::true
-          elif [[ ${{ github.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)$ ]]; then
-              echo ::set-output name=production::true
+          if [[ "$GITHUB_REF" =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)-(\d+)$ ]]; then
+              echo "::set-output name=staging::true"
+          elif [[ "$GITHUB_REF" =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)$ ]]; then
+              echo "::set-output name=production::true"
           fi
 
       - name: install and update dpl dependencies
