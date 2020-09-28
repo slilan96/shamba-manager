@@ -35,3 +35,36 @@ jobs:
         run: yarn test
         env:
           NODE_ENV: test-ci
+
+  release-to-heroku:
+    runs-on: ubuntu-latest
+
+    container: ruby:latest
+
+    needs: setup-and-tests
+
+    steps:
+      - name: check tags
+        id: check-tag
+        run:
+        |
+          if [[ ${{ github.event.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)-(\d+)$ ]]; then
+              echo ::set-output name=staging::true
+          elif [[ ${{ github.event.ref }} =~ ^refs/tags/v(\d+\.)(\d+\.)(\d+)$ ]]; then
+              echo ::set-output name=production::true
+          fi
+
+      - name: install and update dpl dependencies
+        if: steps.check-tag.outputs.staging == 'true' || steps.check-tag.outputs.production == 'true'
+        run:
+          - apt-get update -qy
+          - apt-get install -y ruby-dev
+          - apt-get dpl --pre
+
+      - name: deploy to staging environment
+        if: steps.check-tag.outputs.staging == 'true'
+        run: dpl heroku api --app=$HEROKU_APP_STAGING --api_key=$HEROKU_API_KEY
+
+      - name: deploy to production environment
+        if: steps.check-tag.outputs.production == 'true'
+        run: dpl heroku api --app=$HEROKU_APP_PRODUCTION --api_key=$HEROKU_API_KEY
