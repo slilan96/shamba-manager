@@ -31,7 +31,7 @@ app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet());
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && process.env.NODE_CONFIG_ENV === 'production') {
   app.use(cors({ origin: app.get('allowedOrigins') }));
   app.use(forceSsl);
 } else {
