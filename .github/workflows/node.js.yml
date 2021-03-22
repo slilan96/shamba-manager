@@ -34,7 +34,7 @@ jobs:
       - name: Integration tests
         run: yarn test
         env:
-          NODE_ENV: test-ci
+          NODE_CONFIG_ENV: test-ci
 
   release-to-heroku:
     runs-on: ubuntu-latest
