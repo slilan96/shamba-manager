@@ -35,8 +35,6 @@
     "run:migrations": "knex migrate:latest",
     "release:rc": "standard-version -p",
     "release": "standard-version",
-    "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect",
     "coverage": "nyc mocha test/ --recursive --exit"
   },
   "standard": {
@@ -68,7 +66,6 @@
     "objection": "^2.1.2",
     "pg": "^8.3.0",
     "serve-favicon": "^2.5.0",
-    "snyk": "^1.381.1",
     "winston": "^3.0.0"
   },
   "devDependencies": {
@@ -98,6 +95,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "snyk": true
+  }
 }
