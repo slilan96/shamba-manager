@@ -59,7 +59,7 @@ jobs:
         run: |
           apt-get update -qy
           apt-get install -y ruby-dev
-          apt-get dpl --pre
+          gem install dpl --pre
 
       - name: deploy to staging environment
         if: steps.check-tag.outputs.staging == 'true'
