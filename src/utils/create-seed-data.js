@@ -78,17 +78,6 @@ async function createProducts() {
   await app.service('products').create(products, { authenticated: true });
 }
 
-async function createProjects() {
-  await knex('projects').truncate();
-  const projects = [];
-
-  for (let i = 0; i < 10; i += 1) {
-    projects.push({ project_name: faker.random.word() });
-  }
-
-  await app.service('projects').create(projects, { authenticated: true });
-}
-
 const getIdsFromDbResult = (results) => results.map(({ id }) => id);
 
 // this function assumes that
@@ -121,9 +110,6 @@ async function createHarvests() {
   const farms = await app.service('farms').find({ query: { $select: ['id'] } });
   const farmIds = getIdsFromDbResult(farms.data);
 
-  const projects = await app.service('projects').find({ query: { $select: ['id'] } });
-  const projectIds = getIdsFromDbResult(projects.data);
-
   const harvests = [];
 
   for (let i = 0; i < 30; i += 1) {
@@ -134,7 +120,6 @@ async function createHarvests() {
       harvest_farm: faker.random.arrayElement(farmIds),
       date_of_harvest: faker.date.recent(),
       harvested_product: faker.random.arrayElement(productIds),
-      project_id: faker.random.arrayElement(projectIds),
     });
   }
 
@@ -152,7 +137,6 @@ async function createSeedData() {
     await createProducts();
     await createStaff();
     await createFarms();
-    await createProjects();
     await createHarvests();
     process.exit();
   } catch (error) {

@@ -132,4 +132,18 @@ describe('Migrations Tests', () => {
         .then(() => expect(knexInstance, 'to have column', { harvests: 'project_id' }))
     ));
   });
+
+  describe('Dropping the \'projects\' table', () => {
+    it('should drop the projects table', () => (
+      expect(knexInstance, 'to apply migration', '20210322095201_drop_projects_table.js')
+        .then(() => expect(knexInstance, 'not to have table', 'projects'))
+    ));
+  });
+
+  describe('Dropping project_id column from harvests table', () => {
+    it('should drop the project_id column from the harvests table', () => (
+      expect(knexInstance, 'to apply migration', '20210322100221_drop_project_id_column_from_harvest_table.js')
+        .then(() => expect(knexInstance, 'not to have column', { harvests: 'project_id' }))
+    ));
+  });
 });
