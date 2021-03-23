@@ -28,7 +28,6 @@ module.exports = {
       expiresIn: '1d',
     },
     limiter: {
-      // have stricter defaults here
       http: {
         windowMs: 60 * 1000, // 1 minutes window
         delayAfter: 5, // begin slowing down responses after the 5th request
@@ -46,7 +45,13 @@ module.exports = {
   public: '../public',
   postgres: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        // eslint-disable-next-line max-len
+        rejectUnauthorized: false, // turn this off for now, but if we use a paid service, make sure that this is updated
+      },
+    },
     migrations: {
       tableName: 'knex_migrations',
       directory: '../database/migrations',
