@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1-2](https://github.com/tindNan/shamba-manager/compare/v0.4.1-1...v0.4.1-2) (2021-03-23)
+
+
+### Features
+
+* drop the project table and reference to project_id in different models ([#2](https://github.com/tindNan/shamba-manager/issues/2)) ([6a7bf77](https://github.com/tindNan/shamba-manager/commit/6a7bf77ff1609979222632b8c450aede1f19cfe4))
+
 ### [0.4.1-1](https://gitlab.com/slilanPropane/shamba-manager/compare/v0.4.1-0...v0.4.1-1) (2020-09-04)
 
 
