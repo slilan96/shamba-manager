@@ -8,7 +8,7 @@
 - `yarn`
 - PostgreSQL
 
-### Important to have but not required
+### Nice to have but not required
 
 - `docker`
 - `docker-compose`
@@ -32,16 +32,15 @@ you need to do is change the database connection configuration in
 
 ## Testing
 
-Tests are run both locally and on a CI/CD server (in this case, GITLAB). In
+Tests are run both locally and on a CI/CD server (in this case, GitHub). In
 keeping with the self-contained theme of the application, I have dockerized
 tests as well. To run the dockerized tests, run `yarn test:docker` and this
 will run the whole test suite (unit + integration) using `docker-compose`.
 
 I also deliberately set the `NODE_ENV=production` in order to replicate
 the tests on a production like environment. This is important because some
-of the packages make some changes and optimization when `NODE_ENV=production`
+of the packages make some changes and optimizations when `NODE_ENV=production`
 so it would be nice to test that as well.
 
-If you prefer to use a custom postrges server that's not docker,
-feel free to edit respective config files to meet your desires and run the
-tests.
+If you prefer to use a local postgres server feel free to edit respective
+config files to meet your desires and run the tests.
