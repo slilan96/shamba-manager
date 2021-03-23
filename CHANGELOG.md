@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/tindNan/shamba-manager/compare/v0.4.1...v0.4.2) (2021-03-23)
+
+
+### Bug Fixes
+
+* update db connection options ([3d34b58](https://github.com/tindNan/shamba-manager/commit/3d34b580e8d9a0fc8040370f7b8694a3e29639df))
+
 ### [0.4.1](https://github.com/tindNan/shamba-manager/compare/v0.4.1-3...v0.4.1) (2021-03-23)
 
 ### [0.4.1-5](https://github.com/tindNan/shamba-manager/compare/v0.4.1-4...v0.4.1-5) (2021-03-23)
