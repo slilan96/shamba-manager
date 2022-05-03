@@ -20,7 +20,7 @@
     "config": "config/"
   },
   "engines": {
-    "node": "^12.0.0",
+    "node": "^16.0.0",
     "yarn": ">= 0.18.0"
   },
   "scripts": {
@@ -44,6 +44,8 @@
     "ignore": []
   },
   "dependencies": {
+    "@fastify/jwt": "^5.0.1",
+    "@fastify/sensible": "^4.0.0",
     "@feathersjs/authentication": "^4.5.1",
     "@feathersjs/authentication-local": "^4.5.1",
     "@feathersjs/authentication-oauth": "^4.5.1",
@@ -52,13 +54,18 @@
     "@feathersjs/express": "^4.5.1",
     "@feathersjs/feathers": "^4.5.1",
     "@feathersjs/transport-commons": "^4.5.3",
+    "@node-rs/bcrypt": "^1.6.0",
     "chai-as-promised": "^7.1.1",
+    "close-with-grace": "^1.1.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "faker": "^4.1.0",
+    "fastify": "^3.29.0",
+    "fastify-plugin": "^3.0.1",
     "feathers-hooks-common": "^5.0.3",
     "feathers-objection": "^4.8.1",
     "feathers-swagger": "^1.2.1",
+    "fluent-json-schema": "^3.1.0",
     "helmet": "^3.21.2",
     "knex": "^0.21.1",
     "limiter": "^1.1.5",
