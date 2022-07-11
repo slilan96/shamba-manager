@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 const _ = require('lodash');
 const { MethodNotAllowed, NotAuthenticated, NotFound } = require('@feathersjs/errors');
 const app = require('../../../../src/app');
