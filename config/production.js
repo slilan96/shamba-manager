@@ -41,16 +41,18 @@ module.exports = {
     },
   },
   host: process.env.FEATHERS_HOST,
-  port: process.env.PORT,
+  port: process.env.PORT || 8080,
   public: '../public',
   postgres: {
     client: 'pg',
     connection: {
-      connectionString: process.env.DATABASE_URL,
+      connectionString: process.env.DB_URL,
+      /** UNCOMMENT HERE ONCE WE HAVE SECURED SSL
       ssl: {
         // eslint-disable-next-line max-len
         rejectUnauthorized: false, // turn this off for now, but if we use a paid service, make sure that this is updated
       },
+      */
     },
     migrations: {
       tableName: 'knex_migrations',
