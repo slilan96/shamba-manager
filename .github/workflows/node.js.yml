@@ -5,7 +5,7 @@ jobs:
   setup-and-tests:
     runs-on: ubuntu-latest
 
-    container: node:12.21.0-alpine3.12
+    container: node:16-alpine
 
     services:
       postgres:
@@ -36,7 +36,7 @@ jobs:
         env:
           NODE_CONFIG_ENV: test-ci
 
-  release-to-heroku:
+  release:
     runs-on: ubuntu-latest
 
     container: ruby:latest
