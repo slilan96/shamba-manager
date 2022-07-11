@@ -12,6 +12,7 @@
         "ecmaVersion": 11
     },
     "rules": {
-      "no-multi-assign": "off"
+      "no-multi-assign": "off",
+      "import/no-extraneous-dependencies": "off"
     }
 }

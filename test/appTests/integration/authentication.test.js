@@ -1,5 +1,5 @@
 const assert = require('assert');
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 const app = require('../../../src/app');
 
 describe('authentication', () => {

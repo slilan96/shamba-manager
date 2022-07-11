@@ -2,7 +2,7 @@
  * SINCE THIS IS GENERATING TEST DATA, THERE IS
  * A NEED TO MAKE SURE THAT THIS DATA WILL NEVER THROW ERRORS
  */
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 const app = require('../../src/app');
 
 function aUserExists() {
