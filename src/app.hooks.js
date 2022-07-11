@@ -1,13 +1,11 @@
 // Application hooks that run for every service
-const { disallow } = require('feathers-hooks-common');
-
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
     create: [],
-    update: [disallow()],
+    update: [],
     patch: [],
     remove: [],
   },
