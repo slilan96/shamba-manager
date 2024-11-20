@@ -1,15 +1,15 @@
 const {
   JWTStrategy,
   AuthenticationBaseStrategy,
-} = require("@feathersjs/authentication");
-const { LocalStrategy } = require("@feathersjs/authentication-local");
-const { expressOauth } = require("@feathersjs/authentication-oauth");
-const { NotAuthenticated } = require("@feathersjs/errors");
+} = require('@feathersjs/authentication');
+const { LocalStrategy } = require('@feathersjs/authentication-local');
+const { expressOauth } = require('@feathersjs/authentication-oauth');
+const { NotAuthenticated } = require('@feathersjs/errors');
 
-const { AuthServiceWithPayload } = require("./authentication.class");
+const { AuthServiceWithPayload } = require('./authentication.class');
 
 class ApiKeyStrategy extends AuthenticationBaseStrategy {
-  constructor(headerField = "x-api-key") {
+  constructor(headerField = 'x-api-key') {
     super();
     this.headerField = headerField;
   }
@@ -18,8 +18,8 @@ class ApiKeyStrategy extends AuthenticationBaseStrategy {
   authenticate(authRequest, params) {
     const { apiKey } = authRequest;
 
-    if (apiKey !== this.app.get("apiKey")) {
-      throw new NotAuthenticated("Invalid API key");
+    if (apiKey !== this.app.get('apiKey')) {
+      throw new NotAuthenticated('Invalid API key');
     }
 
     // To add a user look it up from the service
@@ -48,10 +48,10 @@ class ApiKeyStrategy extends AuthenticationBaseStrategy {
 module.exports = (app) => {
   const authentication = new AuthServiceWithPayload(app);
 
-  authentication.register("jwt", new JWTStrategy());
-  authentication.register("local", new LocalStrategy());
-  authentication.register("apiKey", new ApiKeyStrategy());
+  authentication.register('jwt', new JWTStrategy());
+  authentication.register('local', new LocalStrategy());
+  authentication.register('apiKey', new ApiKeyStrategy());
 
-  app.use("/authentication", authentication);
+  app.use('/authentication', authentication);
   app.configure(expressOauth());
 };

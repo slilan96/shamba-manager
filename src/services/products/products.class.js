@@ -1,4 +1,4 @@
-const { Service } = require("feathers-objection");
+const { Service } = require('feathers-objection');
 
 class Products extends Service {
   constructor(options) {
@@ -13,19 +13,19 @@ class Products extends Service {
 
 Products.prototype.docs = {
   description:
-    "A service to keep track of the products harvested/produced in the farm e.g maize, coffee cherries etc",
+    'A service to keep track of the products harvested/produced in the farm e.g maize, coffee cherries etc',
   definitions: {
     products: {
-      type: "object",
-      required: ["name", "units"],
+      type: 'object',
+      required: ['name', 'units'],
       properties: {
         name: {
-          type: "string",
-          description: "The name of the product",
+          type: 'string',
+          description: 'The name of the product',
         },
         units: {
-          type: "string",
-          description: "The units of measurement of the product e.g Kgs",
+          type: 'string',
+          description: 'The units of measurement of the product e.g Kgs',
         },
       },
     },

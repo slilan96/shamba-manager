@@ -2,31 +2,31 @@
  * SINCE THIS IS GENERATING TEST DATA, THERE IS
  * A NEED TO MAKE SURE THAT THIS DATA WILL NEVER THROW ERRORS
  */
-const { faker } = require("@faker-js/faker");
-const app = require("../../src/app");
+const { faker } = require('@faker-js/faker');
+const app = require('../../src/app');
 
 function aUserExists() {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
 
-  return app.service("users").create({
+  return app.service('users').create({
     email: faker.internet.email(firstName, lastName),
     password: faker.internet.password(),
     first_name: firstName,
     last_name: lastName,
-    role: faker.random.arrayElement(["administrator", "supervisor"]),
+    role: faker.random.arrayElement(['administrator', 'supervisor']),
   });
 }
 
 function aProductExists() {
-  return app.service("products").create({
+  return app.service('products').create({
     name: faker.random.word(),
-    units: faker.random.arrayElement(["kg", "l"]),
+    units: faker.random.arrayElement(['kg', 'l']),
   });
 }
 
 function aFarmExists() {
-  return app.service("farms").create({
+  return app.service('farms').create({
     farm_name: faker.random.word(),
     title_number: faker.finance.account(),
     size: faker.random.number(),
@@ -37,12 +37,12 @@ function aStaffMemberExists() {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
 
-  return app.service("staff").create({
+  return app.service('staff').create({
     email: faker.internet.email(firstName, lastName),
     phone_number: faker.phone.phoneNumber(),
     first_name: firstName,
     last_name: lastName,
-    role: faker.random.arrayElement(["foreman", "supervisor", "farm-worker"]),
+    role: faker.random.arrayElement(['foreman', 'supervisor', 'farm-worker']),
   });
 }
 

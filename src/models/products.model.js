@@ -1,21 +1,21 @@
 // See https://vincit.github.io/objection.js/#models
 // for more of what you can do here.
-const { Model } = require("objection");
+const { Model } = require('objection');
 
 class products extends Model {
   static get tableName() {
-    return "products";
+    return 'products';
   }
 
   static get jsonSchema() {
     return {
-      type: "object",
-      required: ["name", "units"],
+      type: 'object',
+      required: ['name', 'units'],
 
       properties: {
-        id: "integer",
-        name: "string",
-        units: "string",
+        id: 'integer',
+        name: 'string',
+        units: 'string',
       },
     };
   }

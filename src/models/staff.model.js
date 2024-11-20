@@ -1,27 +1,27 @@
 // See https://vincit.github.io/objection.js/#models
 // for more of what you can do here.
-const { Model } = require("objection");
+const { Model } = require('objection');
 
 class staff extends Model {
   static get tableName() {
-    return "staff";
+    return 'staff';
   }
 
   static get jsonSchema() {
     return {
-      type: "object",
-      required: ["first_name", "last_name", "role"],
+      type: 'object',
+      required: ['first_name', 'last_name', 'role'],
 
       properties: {
-        email: "string",
-        phone_number: "string",
-        first_name: "string",
-        last_name: "string",
+        email: 'string',
+        phone_number: 'string',
+        first_name: 'string',
+        last_name: 'string',
         role: {
-          type: "string",
-          enum: ["supervisor", "farm-worker", "foreman"],
+          type: 'string',
+          enum: ['supervisor', 'farm-worker', 'foreman'],
         },
-        active: "boolean",
+        active: 'boolean',
       },
     };
   }

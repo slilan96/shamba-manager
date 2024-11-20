@@ -1,13 +1,13 @@
-const chai = require("chai");
-const chaiAsPromised = require("chai-as-promised");
-const { faker } = require("@faker-js/faker");
-const _ = require("lodash");
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const { faker } = require('@faker-js/faker');
+const _ = require('lodash');
 const {
   MethodNotAllowed,
   NotAuthenticated,
   NotFound,
-} = require("@feathersjs/errors");
-const app = require("../../../../src/app");
+} = require('@feathersjs/errors');
+const app = require('../../../../src/app');
 
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
@@ -24,7 +24,7 @@ function createStaffWithRole(role) {
     role,
   };
 
-  return app.service("staff").create(staff);
+  return app.service('staff').create(staff);
 }
 
 function createFarm() {
@@ -34,41 +34,41 @@ function createFarm() {
     size: faker.random.number(),
   };
 
-  return app.service("farms").create(farm);
+  return app.service('farms').create(farm);
 }
 
 function createProduct() {
   const product = {
     name: faker.random.word(),
-    units: "kg",
+    units: 'kg',
   };
 
-  return app.service("products").create(product);
+  return app.service('products').create(product);
 }
 
 describe("'harvests' service", () => {
   afterEach(async () => {
-    const knex = app.get("knex");
-    await knex("harvests").truncate();
-    await knex("users").truncate();
-    await knex("products").truncate();
-    await knex("farms").truncate();
-    await knex("staff").truncate();
+    const knex = app.get('knex');
+    await knex('harvests').truncate();
+    await knex('users').truncate();
+    await knex('products').truncate();
+    await knex('farms').truncate();
+    await knex('staff').truncate();
   });
 
-  it("registered the service", () => {
-    const service = app.service("harvests");
+  it('registered the service', () => {
+    const service = app.service('harvests');
 
-    assert.ok(service, "Registered the service");
+    assert.ok(service, 'Registered the service');
   });
 
-  describe("POST creating a new harvest", () => {
-    it("should create a harvest given valid input", async () => {
+  describe('POST creating a new harvest', () => {
+    it('should create a harvest given valid input', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -80,19 +80,19 @@ describe("'harvests' service", () => {
       };
 
       // when
-      const res = await app.service("harvests").create(harvest);
+      const res = await app.service('harvests').create(harvest);
 
       // then
-      expect(res).to.include(_.omit(harvest, "date_of_harvest"));
+      expect(res).to.include(_.omit(harvest, 'date_of_harvest'));
       expect(res.date_of_harvest).to.deep.equal(harvest.date_of_harvest);
     });
 
-    it("should create a harvest given valid input from authenticated external request", async () => {
+    it('should create a harvest given valid input from authenticated external request', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -105,19 +105,19 @@ describe("'harvests' service", () => {
 
       // when
       const res = await app
-        .service("harvests")
-        .create(harvest, { provider: "external", authenticated: true });
+        .service('harvests')
+        .create(harvest, { provider: 'external', authenticated: true });
 
       // then
-      expect(res).to.include(_.omit(harvest, "date_of_harvest"));
+      expect(res).to.include(_.omit(harvest, 'date_of_harvest'));
       expect(res.date_of_harvest).to.deep.equal(harvest.date_of_harvest);
     });
 
-    it("should reject a create request if the farm does not exist", async () => {
+    it('should reject a create request if the farm does not exist', async () => {
       // given
       const product = await createProduct();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -129,17 +129,17 @@ describe("'harvests' service", () => {
       };
 
       // when
-      const res = app.service("harvests").create(harvest);
+      const res = app.service('harvests').create(harvest);
 
       // then
       await expect(res).to.be.rejectedWith(NotFound);
     });
 
-    it("should reject a create request if the product does not exist", async () => {
+    it('should reject a create request if the product does not exist', async () => {
       // given
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -151,17 +151,17 @@ describe("'harvests' service", () => {
       };
 
       // when
-      const res = app.service("harvests").create(harvest);
+      const res = app.service('harvests').create(harvest);
 
       // then
       await expect(res).to.be.rejectedWith(NotFound);
     });
 
-    it("should reject a create request if the clerk/recording officer does not exist", async () => {
+    it('should reject a create request if the clerk/recording officer does not exist', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -173,17 +173,17 @@ describe("'harvests' service", () => {
       };
 
       // when
-      const res = app.service("harvests").create(harvest);
+      const res = app.service('harvests').create(harvest);
 
       // then
       await expect(res).to.be.rejectedWith(NotFound);
     });
 
-    it("should reject a create request if the harvesting-worker does not exist", async () => {
+    it('should reject a create request if the harvesting-worker does not exist', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
+      const recordingOfficer = await createStaffWithRole('foreman');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -195,18 +195,18 @@ describe("'harvests' service", () => {
       };
 
       // when
-      const res = app.service("harvests").create(harvest);
+      const res = app.service('harvests').create(harvest);
 
       // then
       await expect(res).to.be.rejectedWith(NotFound);
     });
 
-    it("should reject harvest data if external request is not authenticated", async () => {
+    it('should reject harvest data if external request is not authenticated', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -219,19 +219,19 @@ describe("'harvests' service", () => {
 
       // when
       const res = app
-        .service("harvests")
-        .create(harvest, { provider: "external" });
+        .service('harvests')
+        .create(harvest, { provider: 'external' });
 
       // then
       await expect(res).to.be.rejectedWith(NotAuthenticated);
     });
 
-    it("should reject harvest data if one of the required fields is missing", async () => {
+    it('should reject harvest data if one of the required fields is missing', async () => {
       // given
       const product = await createProduct();
       const farm = await createFarm();
-      const recordingOfficer = await createStaffWithRole("foreman");
-      const farmWorker = await createStaffWithRole("farm-worker");
+      const recordingOfficer = await createStaffWithRole('foreman');
+      const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
         amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
@@ -243,18 +243,18 @@ describe("'harvests' service", () => {
       };
 
       const fields = [
-        "amount",
-        "harvesting_worker",
-        "clerk",
-        "harvest_farm",
-        "date_of_harvest",
-        "harvested_product",
+        'amount',
+        'harvesting_worker',
+        'clerk',
+        'harvest_farm',
+        'date_of_harvest',
+        'harvested_product',
       ];
 
       const omittedField = faker.random.arrayElement(fields);
 
       // when
-      const res = app.service("harvests").create(_.omit(harvest, omittedField));
+      const res = app.service('harvests').create(_.omit(harvest, omittedField));
 
       // then
       await expect(res).to.be.rejected;
@@ -263,20 +263,20 @@ describe("'harvests' service", () => {
     // TODO: add test to forbid project entries if it's not supplied
   });
 
-  describe("PUT updating/replacing a harvests", () => {
-    it("should reject internal PUT requests", async () => {
+  describe('PUT updating/replacing a harvests', () => {
+    it('should reject internal PUT requests', async () => {
       // when
-      const response = app.service("harvests").update("fake-id", {});
+      const response = app.service('harvests').update('fake-id', {});
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);
     });
 
-    it("should reject external PUT requests", async () => {
+    it('should reject external PUT requests', async () => {
       // when
       const response = app
-        .service("harvests")
-        .update("fake_id", {}, { provider: "external" });
+        .service('harvests')
+        .update('fake_id', {}, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);
