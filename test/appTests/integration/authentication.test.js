@@ -16,8 +16,8 @@ describe('authentication', () => {
   describe('local strategy', () => {
     const userInfo = {
       email: faker.internet.email(),
-      first_name: faker.name.firstName(),
-      last_name: faker.name.lastName(),
+      first_name: faker.person.firstName(),
+      last_name: faker.person.lastName(),
       password: faker.internet.password(),
       role: 'administrator',
     };

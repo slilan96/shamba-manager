@@ -13,8 +13,8 @@ chai.use(chaiAsPromised);
 const { assert, expect } = chai;
 
 function createStaffWithRole(role) {
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
 
   const staff = {
     email: faker.internet.email(firstName, lastName),

@@ -26,8 +26,8 @@ describe("'users' service", () => {
       // given
       validUserInfo = {
         email: faker.internet.email(),
-        first_name: faker.name.firstName(),
-        last_name: faker.name.lastName(),
+        first_name: faker.person.firstName(),
+        last_name: faker.person.lastName(),
         password: faker.internet.password(),
         role: faker.helpers.arrayElement(['administrator', 'supervisor']),
       };

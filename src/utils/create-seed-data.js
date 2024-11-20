@@ -11,8 +11,8 @@ async function createUsers() {
   const users = [];
 
   for (let i = 0; i < 5; i += 1) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
 
     users.push({
       email: faker.internet.email(firstName, lastName),
@@ -38,8 +38,8 @@ async function createStaff() {
   const staff = [];
 
   for (let i = 0; i < 20; i += 1) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
 
     staff.push({
       email: faker.internet.email(firstName, lastName),

@@ -6,8 +6,8 @@ const { faker } = require('@faker-js/faker');
 const app = require('../../src/app');
 
 function aUserExists() {
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
 
   return app.service('users').create({
     email: faker.internet.email(firstName, lastName),
@@ -34,8 +34,8 @@ function aFarmExists() {
 }
 
 function aStaffMemberExists() {
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
 
   return app.service('staff').create({
     email: faker.internet.email(firstName, lastName),

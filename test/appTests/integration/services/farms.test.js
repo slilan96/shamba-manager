@@ -76,7 +76,7 @@ describe("'farms' service", () => {
       // when
       const response = app
         .service('farms')
-        .update('fake-id', { last_name: faker.name.lastName() });
+        .update('fake-id', { last_name: faker.person.lastName() });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);
@@ -88,7 +88,7 @@ describe("'farms' service", () => {
         .service('farms')
         .update(
           'fake_id',
-          { farm_name: faker.name.lastName() },
+          { farm_name: faker.person.lastName() },
           { provider: 'external' },
         );
 
@@ -97,3 +97,5 @@ describe("'farms' service", () => {
     });
   });
 });
+
+faker.person.
