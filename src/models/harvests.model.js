@@ -1,23 +1,30 @@
 // See https://vincit.github.io/objection.js/#models
 // for more of what you can do here.
-const { Model } = require('objection');
+const { Model } = require("objection");
 
 class harvests extends Model {
   static get tableName() {
-    return 'harvests';
+    return "harvests";
   }
 
   static get jsonSchema() {
     return {
-      type: 'object',
-      required: ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'date_of_harvest', 'harvested_product'],
+      type: "object",
+      required: [
+        "amount",
+        "harvesting_worker",
+        "clerk",
+        "harvest_farm",
+        "date_of_harvest",
+        "harvested_product",
+      ],
       properties: {
-        amount: 'number',
-        harvesting_worker: 'string',
-        clerk: 'string',
-        harvest_farm: 'string',
-        date_of_harvest: 'string',
-        harvested_product: 'string',
+        amount: "number",
+        harvesting_worker: "string",
+        clerk: "string",
+        harvest_farm: "string",
+        date_of_harvest: "string",
+        harvested_product: "string",
       },
     };
   }

@@ -1,4 +1,4 @@
-const rateLimiter = require('../../hooks/rate-limiter');
+const rateLimiter = require("../../hooks/rate-limiter");
 
 module.exports = {
   before: {
@@ -6,7 +6,11 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      rateLimiter({ tokensPerInterval: 5, interval: 'minute', method: 'create' }),
+      rateLimiter({
+        tokensPerInterval: 5,
+        interval: "minute",
+        method: "create",
+      }),
     ],
     update: [],
     patch: [],

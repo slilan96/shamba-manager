@@ -1,9 +1,9 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
-const { protect } = require('@feathersjs/authentication-local').hooks;
+const { authenticate } = require("@feathersjs/authentication").hooks;
+const { protect } = require("@feathersjs/authentication-local").hooks;
 
 module.exports = {
   before: {
-    all: [authenticate('jwt')],
+    all: [authenticate("jwt")],
     find: [],
     get: [],
     create: [],
@@ -15,7 +15,7 @@ module.exports = {
   after: {
     all: [],
     find: [],
-    get: [protect('active')],
+    get: [protect("active")],
     create: [],
     update: [],
     patch: [],

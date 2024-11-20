@@ -1,4 +1,4 @@
-const { AuthenticationService } = require('@feathersjs/authentication');
+const { AuthenticationService } = require("@feathersjs/authentication");
 
 class AuthServiceWithPayload extends AuthenticationService {
   async getPayload(authResult, params) {
@@ -14,7 +14,7 @@ class AuthServiceWithPayload extends AuthenticationService {
 }
 
 AuthServiceWithPayload.prototype.docs = {
-  description: 'An authentication service for the API\'s consumers',
+  description: "An authentication service for the API's consumers",
 };
 
 exports.AuthServiceWithPayload = AuthServiceWithPayload;
