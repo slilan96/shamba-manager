@@ -20,16 +20,15 @@
     "config": "config/"
   },
   "engines": {
-    "node": "^16.0.0",
-    "yarn": ">= 0.18.0"
+    "node": ">=20"
   },
   "scripts": {
     "commit": "git-cz",
-    "test": "yarn test:mocha",
-    "test:local": "NODE_CONFIG_ENV=test yarn test:mocha",
+    "test": "pnpm test:mocha",
+    "test:local": "NODE_CONFIG_ENV=test pnpm test:mocha",
     "test:docker": "docker-compose -f app-test.yaml run api",
     "lint": "eslint src/. test/. --config .eslintrc.json",
-    "dev": "yarn run:migrations && node src/utils/create-seed-data.js && nodemon src/",
+    "dev": "pnpm run:migrations && node src/utils/create-seed-data.js && nodemon src/",
     "start": "node src/",
     "test:mocha": "NODE_ENV=production mocha test/migrations/migrations.test.js test/appTests/ --recursive --exit",
     "run:migrations": "knex migrate:latest",
