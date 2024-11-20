@@ -27,7 +27,7 @@ describe("'farms' service", () => {
       validFarmInput = {
         farm_name: faker.word.noun(),
         title_number: faker.finance.accountNumber(),
-        size: faker.number.int(),
+        size: faker.number.int({ max: 3000 }),
       };
     });
 

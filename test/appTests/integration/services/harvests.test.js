@@ -31,7 +31,7 @@ function createFarm() {
   const farm = {
     farm_name: faker.word.noun(),
     title_number: faker.finance.accountNumber(),
-    size: faker.number.int(),
+    size: faker.number.int({ max: 3000 }),
   };
 
   return app.service('farms').create(farm);
@@ -123,7 +123,7 @@ describe("'harvests' service", () => {
         amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
-        harvest_farm: faker.number.int(),
+        harvest_farm: faker.number.int({ max: 3000 }),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
       };
@@ -147,7 +147,7 @@ describe("'harvests' service", () => {
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
-        harvested_product: faker.number.int(),
+        harvested_product: faker.number.int({ max: 3000 }),
       };
 
       // when
@@ -166,7 +166,7 @@ describe("'harvests' service", () => {
       const harvest = {
         amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
-        clerk: faker.number.int(),
+        clerk: faker.number.int({ max: 3000 }),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
