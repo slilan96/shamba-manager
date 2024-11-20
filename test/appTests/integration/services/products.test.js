@@ -25,8 +25,8 @@ describe("'products' service", () => {
     beforeEach(async () => {
       // given
       validProductInput = {
-        name: faker.random.word(),
-        units: faker.random.arrayElement(['kg', 'liters']),
+        name: faker.word.noun(),
+        units: faker.helpers.arrayElement(['kg', 'liters']),
       };
     });
 
@@ -40,7 +40,7 @@ describe("'products' service", () => {
 
     it('should reject product creation if any of the required fields are missing', async () => {
       // when
-      const fieldToOmit = faker.random.arrayElement(['name', 'units']);
+      const fieldToOmit = faker.helpers.arrayElement(['name', 'units']);
       const response = app
         .service('products')
         .create(_.omit(validProductInput, fieldToOmit));

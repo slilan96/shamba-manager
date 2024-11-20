@@ -43,6 +43,7 @@
     "ignore": []
   },
   "dependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@feathersjs/authentication": "^4.5.18",
     "@feathersjs/authentication-local": "^4.5.18",
     "@feathersjs/authentication-oauth": "^4.5.18",
@@ -69,7 +70,6 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
-    "@faker-js/faker": "^7.6.0",
     "axios": "^0.21.4",
     "chai": "^4.5.0",
     "commitizen": "^4.3.1",

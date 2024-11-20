@@ -29,7 +29,7 @@ describe("'staff' service", () => {
         phone_number: faker.phone.phoneNumber(),
         first_name: faker.name.firstName(),
         last_name: faker.name.lastName(),
-        role: faker.random.arrayElement([
+        role: faker.helpers.arrayElement([
           'foreman',
           'supervisor',
           'farm-worker',
@@ -48,7 +48,7 @@ describe("'staff' service", () => {
     it('should reject staff creation if one of the required fields is missing', async () => {
       // given
       const requiredFields = ['first_name', 'last_name', 'role'];
-      const ommittedField = faker.random.arrayElement(requiredFields);
+      const ommittedField = faker.helpers.arrayElement(requiredFields);
 
       // when
       const response = app

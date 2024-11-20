@@ -29,9 +29,9 @@ function createStaffWithRole(role) {
 
 function createFarm() {
   const farm = {
-    farm_name: faker.random.word(),
-    title_number: faker.finance.account(),
-    size: faker.random.number(),
+    farm_name: faker.word.noun(),
+    title_number: faker.finance.accountNumber(),
+    size: faker.number.int(),
   };
 
   return app.service('farms').create(farm);
@@ -39,7 +39,7 @@ function createFarm() {
 
 function createProduct() {
   const product = {
-    name: faker.random.word(),
+    name: faker.word.noun(),
     units: 'kg',
   };
 
@@ -71,7 +71,7 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -95,7 +95,7 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -120,10 +120,10 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
-        harvest_farm: faker.random.number(),
+        harvest_farm: faker.number.int(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
       };
@@ -142,12 +142,12 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
-        harvested_product: faker.random.number(),
+        harvested_product: faker.number.int(),
       };
 
       // when
@@ -164,9 +164,9 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
-        clerk: faker.random.number(),
+        clerk: faker.number.int(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
@@ -186,8 +186,8 @@ describe("'harvests' service", () => {
       const recordingOfficer = await createStaffWithRole('foreman');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
-        harvesting_worker: faker.random.number(),
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
+        harvesting_worker: faker.number.int(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
@@ -209,7 +209,7 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -234,7 +234,7 @@ describe("'harvests' service", () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -251,7 +251,7 @@ describe("'harvests' service", () => {
         'harvested_product',
       ];
 
-      const omittedField = faker.random.arrayElement(fields);
+      const omittedField = faker.helpers.arrayElement(fields);
 
       // when
       const res = app.service('harvests').create(_.omit(harvest, omittedField));

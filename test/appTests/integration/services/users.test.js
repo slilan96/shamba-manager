@@ -29,7 +29,7 @@ describe("'users' service", () => {
         first_name: faker.name.firstName(),
         last_name: faker.name.lastName(),
         password: faker.internet.password(),
-        role: faker.random.arrayElement(['administrator', 'supervisor']),
+        role: faker.helpers.arrayElement(['administrator', 'supervisor']),
       };
     });
 
@@ -61,7 +61,7 @@ describe("'users' service", () => {
         'password',
         'role',
       ];
-      const ommittedField = faker.random.arrayElement(requiredFields);
+      const ommittedField = faker.helpers.arrayElement(requiredFields);
 
       // when
       const response = app

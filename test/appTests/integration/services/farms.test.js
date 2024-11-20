@@ -25,9 +25,9 @@ describe("'farms' service", () => {
     beforeEach(async () => {
       // given
       validFarmInput = {
-        farm_name: faker.random.word(),
-        title_number: faker.finance.account(),
-        size: faker.random.number(),
+        farm_name: faker.word.noun(),
+        title_number: faker.finance.accountNumber(),
+        size: faker.number.int(),
       };
     });
 
@@ -41,7 +41,7 @@ describe("'farms' service", () => {
 
     it('should reject farm creation if any of the required fields are missing', async () => {
       // when
-      const fieldToOmit = faker.random.arrayElement(['farm_name', 'size']);
+      const fieldToOmit = faker.helpers.arrayElement(['farm_name', 'size']);
       const response = app
         .service('farms')
         .create(_.omit(validFarmInput, fieldToOmit));
