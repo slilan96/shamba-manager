@@ -5,7 +5,7 @@ jobs:
   setup-and-tests:
     runs-on: ubuntu-latest
 
-    container: node:16-alpine
+    container: node:20-alpine
 
     services:
       postgres:
