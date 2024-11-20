@@ -187,7 +187,7 @@ describe("'harvests' service", () => {
 
       const harvest = {
         amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
-        harvesting_worker: faker.number.int(),
+        harvesting_worker: faker.number.int({ max: 3000 }),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
