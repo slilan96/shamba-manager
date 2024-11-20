@@ -6,7 +6,7 @@ const app = require('../../../../src/app');
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
 
-describe('\'machines\' service', () => {
+describe("'machines' service", () => {
   it('registered the service', () => {
     const service = app.service('machines');
 
@@ -24,7 +24,9 @@ describe('\'machines\' service', () => {
 
     it('should reject external PUT requests', async () => {
       // when
-      const response = app.service('users').update('fake_id', {}, { provider: 'external' });
+      const response = app
+        .service('users')
+        .update('fake_id', {}, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);

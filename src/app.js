@@ -31,7 +31,10 @@ app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet());
 
-if (process.env.NODE_ENV === 'production' && process.env.NODE_CONFIG_ENV === 'production') {
+if (
+  process.env.NODE_ENV === 'production'
+  && process.env.NODE_CONFIG_ENV === 'production'
+) {
   app.use(cors({ origin: app.get('allowedOrigins') }));
   app.use(forceSsl);
 } else {
@@ -45,19 +48,22 @@ app.use(express.urlencoded({ extended: true }));
 // Set up Plugins and providers
 app.configure(express.rest());
 app.configure(objection);
-app.configure(swagger({
-  docsPath: '/docs',
-  uiIndex: path.join(__dirname, 'docs.html'),
-  specs: {
-    info: {
-      title: 'Shamba Manager API documentation',
-      description: 'Shamba Manager is an API service designed to help small and large '
-      + 'farms alike. This system tries to break up a farm into smaller to reason bits '
-      + 'that capture most, if not all, of the key operations in a farm. ',
-      version,
+app.configure(
+  swagger({
+    docsPath: '/docs',
+    uiIndex: path.join(__dirname, 'docs.html'),
+    specs: {
+      info: {
+        title: 'Shamba Manager API documentation',
+        description:
+          'Shamba Manager is an API service designed to help small and large '
+          + 'farms alike. This system tries to break up a farm into smaller to reason bits '
+          + 'that capture most, if not all, of the key operations in a farm. ',
+        version,
+      },
     },
-  },
-}));
+  }),
+);
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);

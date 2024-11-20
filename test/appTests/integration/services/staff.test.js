@@ -8,7 +8,7 @@ const app = require('../../../../src/app');
 chai.use(chaiAsPromised);
 const { expect, assert } = chai;
 
-describe('\'staff\' service', () => {
+describe("'staff' service", () => {
   afterEach(async () => {
     const knex = app.get('knex');
     await knex('staff').truncate();
@@ -26,10 +26,14 @@ describe('\'staff\' service', () => {
       // given
       validStaffInfo = {
         email: faker.internet.email(),
-        phone_number: faker.phone.phoneNumber(),
-        first_name: faker.name.firstName(),
-        last_name: faker.name.lastName(),
-        role: faker.random.arrayElement(['foreman', 'supervisor', 'farm-worker']),
+        phone_number: faker.phone.number(),
+        first_name: faker.person.firstName(),
+        last_name: faker.person.lastName(),
+        role: faker.helpers.arrayElement([
+          'foreman',
+          'supervisor',
+          'farm-worker',
+        ]),
       };
     });
 
@@ -44,10 +48,12 @@ describe('\'staff\' service', () => {
     it('should reject staff creation if one of the required fields is missing', async () => {
       // given
       const requiredFields = ['first_name', 'last_name', 'role'];
-      const ommittedField = faker.random.arrayElement(requiredFields);
+      const ommittedField = faker.helpers.arrayElement(requiredFields);
 
       // when
-      const response = app.service('staff').create(_.omit(validStaffInfo, ommittedField), { authenticated: true });
+      const response = app
+        .service('staff')
+        .create(_.omit(validStaffInfo, ommittedField), { authenticated: true });
 
       // then
       await expect(response).to.be.rejected;
@@ -55,7 +61,12 @@ describe('\'staff\' service', () => {
 
     it('should reject staff creation from an unauthenticated external request', async () => {
       // when
-      const response = app.service('staff').create(validStaffInfo, { disableRateLimit: true, provider: 'external' });
+      const response = app
+        .service('staff')
+        .create(validStaffInfo, {
+          disableRateLimit: true,
+          provider: 'external',
+        });
 
       // then
       await expect(response).to.be.rejectedWith(NotAuthenticated);
@@ -75,7 +86,9 @@ describe('\'staff\' service', () => {
 
     it('should reject external PUT requests', async () => {
       // when
-      const response = app.service('staff').update('fake_id', {}, { provider: 'external' });
+      const response = app
+        .service('staff')
+        .update('fake_id', {}, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);

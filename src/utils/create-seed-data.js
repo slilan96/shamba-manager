@@ -11,15 +11,19 @@ async function createUsers() {
   const users = [];
 
   for (let i = 0; i < 5; i += 1) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
 
     users.push({
       email: faker.internet.email(firstName, lastName),
       password: faker.internet.password(),
       first_name: firstName,
       last_name: lastName,
-      role: faker.random.arrayElement(['administrator', 'supervisor', 'farm-worker']),
+      role: faker.helpers.arrayElement([
+        'administrator',
+        'supervisor',
+        'farm-worker',
+      ]),
     });
   }
 
@@ -34,15 +38,15 @@ async function createStaff() {
   const staff = [];
 
   for (let i = 0; i < 20; i += 1) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
 
     staff.push({
       email: faker.internet.email(firstName, lastName),
-      phone_number: faker.phone.phoneNumber(),
+      phone_number: faker.phone.number(),
       first_name: firstName,
       last_name: lastName,
-      role: faker.random.arrayElement(['foreman', 'supervisor', 'farm-worker']),
+      role: faker.helpers.arrayElement(['foreman', 'supervisor', 'farm-worker']),
     });
   }
 
@@ -55,9 +59,9 @@ async function createFarms() {
 
   for (let i = 0; i < 10; i += 1) {
     farms.push({
-      farm_name: faker.random.word(),
-      title_number: faker.finance.account(),
-      size: faker.random.number(),
+      farm_name: faker.word.noun(),
+      title_number: faker.finance.accountNumber(),
+      size: faker.number.int(),
     });
   }
 
@@ -70,7 +74,7 @@ async function createProducts() {
 
   for (let i = 0; i < 10; i += 1) {
     products.push({
-      name: faker.random.word(), // maybe make this more realistic by extending the function?
+      name: faker.word.noun(), // maybe make this more realistic by extending the function?
       units: 'kg', // TODO once you have more functionality for stuff like Dairy then please extend this
     });
   }
@@ -104,7 +108,9 @@ async function createHarvests() {
   });
   const recordingOfficersIds = getIdsFromDbResult(recordingOfficers);
 
-  const products = await app.service('products').find({ query: { $select: ['id'] } });
+  const products = await app
+    .service('products')
+    .find({ query: { $select: ['id'] } });
   const productIds = getIdsFromDbResult(products.data);
 
   const farms = await app.service('farms').find({ query: { $select: ['id'] } });
@@ -114,12 +120,12 @@ async function createHarvests() {
 
   for (let i = 0; i < 30; i += 1) {
     harvests.push({
-      amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
-      harvesting_worker: faker.random.arrayElement(farmWorkerIds),
-      clerk: faker.random.arrayElement(recordingOfficersIds),
-      harvest_farm: faker.random.arrayElement(farmIds),
+      amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
+      harvesting_worker: faker.helpers.arrayElement(farmWorkerIds),
+      clerk: faker.helpers.arrayElement(recordingOfficersIds),
+      harvest_farm: faker.helpers.arrayElement(farmIds),
       date_of_harvest: faker.date.recent(),
-      harvested_product: faker.random.arrayElement(productIds),
+      harvested_product: faker.helpers.arrayElement(productIds),
     });
   }
 

@@ -8,7 +8,7 @@ const app = require('../../../../src/app');
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
 
-describe('\'farms\' service', () => {
+describe("'farms' service", () => {
   afterEach(async () => {
     const knex = app.get('knex');
     await knex('farms').truncate();
@@ -25,9 +25,9 @@ describe('\'farms\' service', () => {
     beforeEach(async () => {
       // given
       validFarmInput = {
-        farm_name: faker.random.word(),
-        title_number: faker.finance.account(),
-        size: faker.random.number(),
+        farm_name: faker.word.noun(),
+        title_number: faker.finance.accountNumber(),
+        size: faker.number.int({ max: 3000 }),
       };
     });
 
@@ -41,8 +41,10 @@ describe('\'farms\' service', () => {
 
     it('should reject farm creation if any of the required fields are missing', async () => {
       // when
-      const fieldToOmit = faker.random.arrayElement(['farm_name', 'size']);
-      const response = app.service('farms').create(_.omit(validFarmInput, fieldToOmit));
+      const fieldToOmit = faker.helpers.arrayElement(['farm_name', 'size']);
+      const response = app
+        .service('farms')
+        .create(_.omit(validFarmInput, fieldToOmit));
 
       // then
       await expect(response).to.be.rejected;
@@ -50,7 +52,9 @@ describe('\'farms\' service', () => {
 
     it('should reject farm creation from an unauthenticated farm request', async () => {
       // when
-      const response = app.service('farms').create(validFarmInput, { provider: 'external' });
+      const response = app
+        .service('farms')
+        .create(validFarmInput, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(NotAuthenticated);
@@ -58,7 +62,9 @@ describe('\'farms\' service', () => {
 
     it('should create a farm when given valid input and authenticated', async () => {
       // when
-      const response = await app.service('farms').create(validFarmInput, { provider: 'external', authenticated: true });
+      const response = await app
+        .service('farms')
+        .create(validFarmInput, { provider: 'external', authenticated: true });
 
       // then
       expect(response).to.include(validFarmInput);
@@ -68,7 +74,9 @@ describe('\'farms\' service', () => {
   describe('PUT updating/replacing a farm', () => {
     it('should reject internal PUT requests', async () => {
       // when
-      const response = app.service('farms').update('fake-id', { last_name: faker.name.lastName() });
+      const response = app
+        .service('farms')
+        .update('fake-id', { last_name: faker.person.lastName() });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);
@@ -76,11 +84,13 @@ describe('\'farms\' service', () => {
 
     it('should reject external PUT requests', async () => {
       // when
-      const response = app.service('farms').update(
-        'fake_id',
-        { farm_name: faker.name.lastName() },
-        { provider: 'external' },
-      );
+      const response = app
+        .service('farms')
+        .update(
+          'fake_id',
+          { farm_name: faker.person.lastName() },
+          { provider: 'external' },
+        );
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);

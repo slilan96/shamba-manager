@@ -6,7 +6,11 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      rateLimiter({ tokensPerInterval: 5, interval: 'minute', method: 'create' }),
+      rateLimiter({
+        tokensPerInterval: 5,
+        interval: 'minute',
+        method: 'create',
+      }),
     ],
     update: [],
     patch: [],

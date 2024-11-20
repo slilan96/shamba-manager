@@ -17,7 +17,10 @@ class staff extends Model {
         phone_number: 'string',
         first_name: 'string',
         last_name: 'string',
-        role: { type: 'string', enum: ['supervisor', 'farm-worker', 'foreman'] },
+        role: {
+          type: 'string',
+          enum: ['supervisor', 'farm-worker', 'foreman'],
+        },
         active: 'boolean',
       },
     };

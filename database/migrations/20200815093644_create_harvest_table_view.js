@@ -17,5 +17,5 @@ exports.up = function createHarvestTableView(knex) {
 };
 
 exports.down = function dropHarvestTableView(knex) {
-  return knex.raw('DROP VIEW harvests_master_data');
+  return knex.raw("DROP VIEW harvests_master_data");
 };

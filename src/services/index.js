@@ -1,9 +1,9 @@
-const users = require('./users/users.service.js');
-const farms = require('./farms/farms.service.js');
-const products = require('./products/products.service.js');
-const machines = require('./machines/machines.service.js');
-const harvests = require('./harvests/harvests.service.js');
-const staff = require('./staff/staff.service.js');
+const users = require('./users/users.service');
+const farms = require('./farms/farms.service');
+const products = require('./products/products.service');
+const machines = require('./machines/machines.service');
+const harvests = require('./harvests/harvests.service');
+const staff = require('./staff/staff.service');
 // eslint-disable-next-line no-unused-vars
 module.exports = function configureServices(app) {
   app.configure(users);

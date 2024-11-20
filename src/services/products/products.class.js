@@ -12,7 +12,8 @@ class Products extends Service {
 }
 
 Products.prototype.docs = {
-  description: 'A service to keep track of the products harvested/produced in the farm e.g maize, coffee cherries etc',
+  description:
+    'A service to keep track of the products harvested/produced in the farm e.g maize, coffee cherries etc',
   definitions: {
     products: {
       type: 'object',

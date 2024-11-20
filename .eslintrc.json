@@ -1,18 +1,16 @@
 {
-    "env": {
-        "commonjs": true,
-        "es2020": true,
-        "mocha": true,
-        "node": true
-    },
-    "extends": [
-        "airbnb-base"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 11
-    },
-    "rules": {
-      "no-multi-assign": "off",
-      "import/no-extraneous-dependencies": "off"
-    }
+  "env": {
+    "commonjs": true,
+    "es2020": true,
+    "mocha": true,
+    "node": true
+  },
+  "extends": ["airbnb-base"],
+  "parserOptions": {
+    "ecmaVersion": 11
+  },
+  "rules": {
+    "no-multi-assign": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
 }

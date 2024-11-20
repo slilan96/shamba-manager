@@ -12,7 +12,8 @@ class Staff extends Service {
 }
 
 Staff.prototype.docs = {
-  description: 'A service to keep track of the Staff that have been employed on the farm',
+  description:
+    'A service to keep track of the Staff that have been employed on the farm',
   definitions: {
     users: {
       type: 'object',
@@ -33,7 +34,8 @@ Staff.prototype.docs = {
         role: {
           type: 'string',
           enum: ['supervisor', 'farm-worker', 'foreman'],
-          description: 'The role for the staff. This represents their actual role in the farm',
+          description:
+            'The role for the staff. This represents their actual role in the farm',
         },
       },
     },

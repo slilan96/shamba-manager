@@ -8,7 +8,7 @@ const app = require('../../../../src/app');
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
 
-describe('\'products\' service', () => {
+describe("'products' service", () => {
   afterEach(async () => {
     const knex = app.get('knex');
     await knex('products').truncate();
@@ -25,8 +25,8 @@ describe('\'products\' service', () => {
     beforeEach(async () => {
       // given
       validProductInput = {
-        name: faker.random.word(),
-        units: faker.random.arrayElement(['kg', 'liters']),
+        name: faker.word.noun(),
+        units: faker.helpers.arrayElement(['kg', 'liters']),
       };
     });
 
@@ -40,8 +40,10 @@ describe('\'products\' service', () => {
 
     it('should reject product creation if any of the required fields are missing', async () => {
       // when
-      const fieldToOmit = faker.random.arrayElement(['name', 'units']);
-      const response = app.service('products').create(_.omit(validProductInput, fieldToOmit));
+      const fieldToOmit = faker.helpers.arrayElement(['name', 'units']);
+      const response = app
+        .service('products')
+        .create(_.omit(validProductInput, fieldToOmit));
 
       // then
       await expect(response).to.be.rejected;
@@ -49,7 +51,9 @@ describe('\'products\' service', () => {
 
     it('should reject product creation from an unauthenticated product request', async () => {
       // when
-      const response = app.service('products').create(validProductInput, { provider: 'external' });
+      const response = app
+        .service('products')
+        .create(validProductInput, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(NotAuthenticated);
@@ -57,7 +61,12 @@ describe('\'products\' service', () => {
 
     it('should create a product when given valid input and authenticated', async () => {
       // when
-      const response = await app.service('products').create(validProductInput, { provider: 'external', authenticated: true });
+      const response = await app
+        .service('products')
+        .create(validProductInput, {
+          provider: 'external',
+          authenticated: true,
+        });
 
       // then
       expect(response).to.include(validProductInput);
@@ -75,7 +84,9 @@ describe('\'products\' service', () => {
 
     it('should reject external PUT requests', async () => {
       // when
-      const response = app.service('products').update('fake_id', {}, { provider: 'external' });
+      const response = app
+        .service('products')
+        .update('fake_id', {}, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);

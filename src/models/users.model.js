@@ -17,7 +17,10 @@ class users extends Model {
         password: 'string',
         first_name: 'string',
         last_name: 'string',
-        role: { type: 'string', enum: ['administrator', 'supervisor', 'farm-worker'] },
+        role: {
+          type: 'string',
+          enum: ['administrator', 'supervisor', 'farm-worker'],
+        },
         created_at: 'string',
         updated_at: 'string',
       },

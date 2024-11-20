@@ -12,7 +12,8 @@ class Harvests extends Service {
 }
 
 Harvests.prototype.docs = {
-  description: 'A service to keep add and keep track of harvest/harvest like operations in your farm',
+  description:
+    'A service to keep add and keep track of harvest/harvest like operations in your farm',
   definitions: {
     harvests: {
       type: 'object',
@@ -26,11 +27,13 @@ Harvests.prototype.docs = {
       properties: {
         amount: {
           type: 'number',
-          description: 'This is the amount of produce. This field is units agnostic.',
+          description:
+            'This is the amount of produce. This field is units agnostic.',
         },
         harvesting_worker: {
           type: 'string',
-          description: 'The id of the person who the harvest amount is attributed to',
+          description:
+            'The id of the person who the harvest amount is attributed to',
         },
         clerk: {
           type: 'string',

@@ -12,7 +12,8 @@ class Users extends Service {
 }
 
 Users.prototype.docs = {
-  description: 'A service to track of registered users in the system, whether active/inactive',
+  description:
+    'A service to track of registered users in the system, whether active/inactive',
   definitions: {
     users: {
       type: 'object',
@@ -37,7 +38,8 @@ Users.prototype.docs = {
         role: {
           type: 'string',
           enum: ['administrator', 'supervisor', 'farm-worker'],
-          description: 'The role for the user. This controls the type of operations available to the user',
+          description:
+            'The role for the user. This controls the type of operations available to the user',
         },
       },
     },

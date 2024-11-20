@@ -5,7 +5,7 @@ jobs:
   setup-and-tests:
     runs-on: ubuntu-latest
 
-    container: node:16-alpine
+    container: node:20-alpine
 
     services:
       postgres:
@@ -23,33 +23,28 @@ jobs:
 
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+          cache-dependency-path: ./package.json
+          node-version: 20
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Lint Code
-        run: yarn lint
+        run: pnpm lint
 
       - name: Integration tests
-        run: yarn test
+        run: pnpm test
         env:
           NODE_CONFIG_ENV: test-ci
-
-  release:
-    runs-on: ubuntu-latest
-
-    container: ruby:latest
-
-    needs: setup-and-tests
-
-    steps:
-      - name: check tags
-        id: check-tag
-        shell: bash
-        run: |
-          if [[ $GITHUB_REF =~ ^refs/tags/v?[0-9]+\.[0-9]+\.[0-9]+-[0-9]+$ ]]; then
-              echo "::set-output name=staging::true"
-          elif [[ $GITHUB_REF =~ ^refs/tags/v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-              echo "::set-output name=production::true"
-          fi

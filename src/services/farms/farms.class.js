@@ -24,7 +24,8 @@ Farms.prototype.docs = {
         },
         title_number: {
           type: 'string',
-          description: 'The Title Number of the farm for official record keeping',
+          description:
+            'The Title Number of the farm for official record keeping',
         },
       },
     },

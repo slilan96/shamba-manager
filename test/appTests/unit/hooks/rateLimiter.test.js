@@ -12,7 +12,11 @@ describe('Rate Limiter Hook', () => {
   beforeEach(() => {
     // arrange
     app = feathers();
-    app.use('/test', { async create(data) { return data; } });
+    app.use('/test', {
+      async create(data) {
+        return data;
+      },
+    });
   });
 
   it('should allow a request if it is within the limit', () => {
@@ -51,16 +55,28 @@ describe('Rate Limiter Hook', () => {
     });
 
     // act and assert
-    return assert.isRejected(app.service('test').create({ name: 'bad creation' }), Error);
+    return assert.isRejected(
+      app.service('test').create({ name: 'bad creation' }),
+      Error,
+    );
   });
 
-  it('should throw an error if the hook\'s options.method does not match the assigned method', () => {
+  it("should throw an error if the hook's options.method does not match the assigned method", () => {
     // arrange
     app.service('test').hooks({
-      before: { create: rateLimit({ method: 'find', tokensPerInterval: 5, interval: 'hour' }) },
+      before: {
+        create: rateLimit({
+          method: 'find',
+          tokensPerInterval: 5,
+          interval: 'hour',
+        }),
+      },
     });
 
     // act and assert
-    return assert.isRejected(app.service('test').create({ name: 'bad creation' }), Error);
+    return assert.isRejected(
+      app.service('test').create({ name: 'bad creation' }),
+      Error,
+    );
   });
 });

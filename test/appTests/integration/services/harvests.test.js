@@ -2,19 +2,23 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const { faker } = require('@faker-js/faker');
 const _ = require('lodash');
-const { MethodNotAllowed, NotAuthenticated, NotFound } = require('@feathersjs/errors');
+const {
+  MethodNotAllowed,
+  NotAuthenticated,
+  NotFound,
+} = require('@feathersjs/errors');
 const app = require('../../../../src/app');
 
 chai.use(chaiAsPromised);
 const { assert, expect } = chai;
 
 function createStaffWithRole(role) {
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
 
   const staff = {
     email: faker.internet.email(firstName, lastName),
-    phone_number: faker.phone.phoneNumber(),
+    phone_number: faker.phone.number(),
     first_name: firstName,
     last_name: lastName,
     role,
@@ -25,9 +29,9 @@ function createStaffWithRole(role) {
 
 function createFarm() {
   const farm = {
-    farm_name: faker.random.word(),
-    title_number: faker.finance.account(),
-    size: faker.random.number(),
+    farm_name: faker.word.noun(),
+    title_number: faker.finance.accountNumber(),
+    size: faker.number.int({ max: 3000 }),
   };
 
   return app.service('farms').create(farm);
@@ -35,14 +39,14 @@ function createFarm() {
 
 function createProduct() {
   const product = {
-    name: faker.random.word(),
+    name: faker.word.noun(),
     units: 'kg',
   };
 
   return app.service('products').create(product);
 }
 
-describe('\'harvests\' service', () => {
+describe("'harvests' service", () => {
   afterEach(async () => {
     const knex = app.get('knex');
     await knex('harvests').truncate();
@@ -67,7 +71,7 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -91,7 +95,7 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -100,7 +104,9 @@ describe('\'harvests\' service', () => {
       };
 
       // when
-      const res = await app.service('harvests').create(harvest, { provider: 'external', authenticated: true });
+      const res = await app
+        .service('harvests')
+        .create(harvest, { provider: 'external', authenticated: true });
 
       // then
       expect(res).to.include(_.omit(harvest, 'date_of_harvest'));
@@ -114,10 +120,10 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
-        harvest_farm: faker.random.number(),
+        harvest_farm: faker.number.int({ max: 3000 }),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
       };
@@ -136,12 +142,12 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
-        harvested_product: faker.random.number(),
+        harvested_product: faker.number.int({ max: 3000 }),
       };
 
       // when
@@ -158,9 +164,9 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
-        clerk: faker.random.number(),
+        clerk: faker.number.int({ max: 3000 }),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
         harvested_product: product.id.toString(),
@@ -180,8 +186,8 @@ describe('\'harvests\' service', () => {
       const recordingOfficer = await createStaffWithRole('foreman');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
-        harvesting_worker: faker.random.number(),
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
+        harvesting_worker: faker.number.int({ max: 3000 }),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
         date_of_harvest: faker.date.recent(),
@@ -203,7 +209,7 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -212,7 +218,9 @@ describe('\'harvests\' service', () => {
       };
 
       // when
-      const res = app.service('harvests').create(harvest, { provider: 'external' });
+      const res = app
+        .service('harvests')
+        .create(harvest, { provider: 'external' });
 
       // then
       await expect(res).to.be.rejectedWith(NotAuthenticated);
@@ -226,7 +234,7 @@ describe('\'harvests\' service', () => {
       const farmWorker = await createStaffWithRole('farm-worker');
 
       const harvest = {
-        amount: faker.random.number({ min: 10, max: 100 }), // set bounds to get more realistic data
+        amount: faker.number.int({ min: 10, max: 100 }), // set bounds to get more realistic data
         harvesting_worker: farmWorker.id.toString(),
         clerk: recordingOfficer.id.toString(),
         harvest_farm: farm.id.toString(),
@@ -234,9 +242,16 @@ describe('\'harvests\' service', () => {
         harvested_product: product.id.toString(),
       };
 
-      const fields = ['amount', 'harvesting_worker', 'clerk', 'harvest_farm', 'date_of_harvest', 'harvested_product'];
+      const fields = [
+        'amount',
+        'harvesting_worker',
+        'clerk',
+        'harvest_farm',
+        'date_of_harvest',
+        'harvested_product',
+      ];
 
-      const omittedField = faker.random.arrayElement(fields);
+      const omittedField = faker.helpers.arrayElement(fields);
 
       // when
       const res = app.service('harvests').create(_.omit(harvest, omittedField));
@@ -259,7 +274,9 @@ describe('\'harvests\' service', () => {
 
     it('should reject external PUT requests', async () => {
       // when
-      const response = app.service('harvests').update('fake_id', {}, { provider: 'external' });
+      const response = app
+        .service('harvests')
+        .update('fake_id', {}, { provider: 'external' });
 
       // then
       await expect(response).to.be.rejectedWith(MethodNotAllowed);

@@ -11,21 +11,18 @@ module.exports = {
     },
   },
   authentication: {
-    entity: 'user',
-    service: 'users',
+    entity: "user",
+    service: "users",
     secret: process.env.JWT_SECRET,
-    authStrategies: [
-      'jwt',
-      'local',
-    ],
+    authStrategies: ["jwt", "local"],
     jwtOptions: {
       header: {
-        typ: 'access',
+        typ: "access",
       },
       audience: process.env.JWT_AUDIENCE,
-      issuer: 'feathers',
-      algorithm: 'HS256',
-      expiresIn: '1d',
+      issuer: "feathers",
+      algorithm: "HS256",
+      expiresIn: "1d",
     },
     limiter: {
       http: {
@@ -36,15 +33,15 @@ module.exports = {
       },
     },
     local: {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: "email",
+      passwordField: "password",
     },
   },
   host: process.env.FEATHERS_HOST,
   port: process.env.PORT || 8080,
-  public: '../public',
+  public: "../public",
   postgres: {
-    client: 'pg',
+    client: "pg",
     connection: {
       connectionString: process.env.DB_URL,
       /** UNCOMMENT HERE ONCE WE HAVE SECURED SSL
@@ -55,8 +52,8 @@ module.exports = {
       */
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: '../database/migrations',
+      tableName: "knex_migrations",
+      directory: "../database/migrations",
     },
   },
 };
