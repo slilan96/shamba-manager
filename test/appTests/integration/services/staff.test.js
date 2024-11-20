@@ -26,7 +26,7 @@ describe("'staff' service", () => {
       // given
       validStaffInfo = {
         email: faker.internet.email(),
-        phone_number: faker.phone.phoneNumber(),
+        phone_number: faker.phone.number(),
         first_name: faker.name.firstName(),
         last_name: faker.name.lastName(),
         role: faker.helpers.arrayElement([

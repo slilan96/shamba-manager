@@ -39,7 +39,7 @@ function aStaffMemberExists() {
 
   return app.service('staff').create({
     email: faker.internet.email(firstName, lastName),
-    phone_number: faker.phone.phoneNumber(),
+    phone_number: faker.phone.number(),
     first_name: firstName,
     last_name: lastName,
     role: faker.helpers.arrayElement(['foreman', 'supervisor', 'farm-worker']),
