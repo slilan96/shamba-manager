@@ -1,5 +1,6 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks;
+const { disallow } = require('feathers-hooks-common');
 
 const rateLimit = require('../../hooks/rate-limiter');
 const allowApiKey = require('../../hooks/allow-api-key');
@@ -15,7 +16,7 @@ module.exports = {
       authenticate('apiKey', 'jwt'),
       hashPassword('password'),
     ],
-    update: [hashPassword('password'), authenticate('jwt')],
+    update: [disallow(), hashPassword('password'), authenticate('jwt')],
     patch: [hashPassword('password'), authenticate('jwt')],
     remove: [authenticate('jwt')],
   },
